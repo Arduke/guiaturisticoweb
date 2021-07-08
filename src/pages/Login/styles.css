@@ -1,0 +1,38 @@
+.gridRootLogin {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.imageLogin {
+    background-image: url(https://source.unsplash.com/random);
+    background-repeat: no-repeat;
+    background-color: gray;
+    background-size: cover;
+    background-position: center
+}
+
+
+.titleLogin {
+    font-size: 30px;
+    font-weight: bolder;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.paperLogin {
+    margin: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center,
+}
+
+.formLogin {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submitLogin {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}

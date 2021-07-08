@@ -1,0 +1,71 @@
+.gridRootRegister {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.imageRegister {
+    background-image: url(https://source.unsplash.com/random);
+    background-repeat: no-repeat;
+    background-color: gray;
+    background-size: cover;
+    background-position: center
+}
+
+
+.titleRegister {
+    font-size: 30px;
+    font-weight: bolder;
+    padding-top: 10px;
+    padding-bottom: 30px;
+}
+
+.paperRegister {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 400;
+    background-color: white;
+    border: 1px solid rgba(73, 73, 73, 0.829);
+    box-shadow: 5px;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.paperRegister h2 {
+    font-weight: bolder;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: rgb(69, 69, 240);
+}
+
+.paperRegister p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: rgb(85, 85, 85);
+}
+
+.paperRegister .LinkRegister {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid rgba(73, 73, 73, 0.829);
+}
+
+.paperRegister .LinkRegister:hover {
+    color: white;
+}
+
+
+.formRegister {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submitRegister {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
