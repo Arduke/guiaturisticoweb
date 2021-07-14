@@ -1,0 +1,79 @@
+.slider {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageContainer {
+    position: relative;
+}
+
+.imageContainer h1 {
+    padding-bottom: 10px;
+    font-weight: 900;
+    font-size: xx-large;
+    color: white;
+    padding-left: 20%;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.548);
+}
+
+.imageContainer p {
+    padding-bottom: 10px;
+    color: white;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.548);
+    padding-left: 20%;
+}
+
+.imageContainer .chipList {
+    padding-left: 20%;
+    color: white;
+}
+
+.centeredSliderImage {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.imageSlider {
+    width: 70vw;
+    height: 70vh;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.445) -2px 2px;
+}
+
+.rigth-arrow, .left-arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 3rem;
+    color: blue;
+    z-index: 10;
+    cursor: pointer;
+    user-select: none;
+}
+
+.rigth-arrow {
+    right: 82px
+}
+
+.left-arrow {
+    left: 82px
+}
+
+.slide {
+    opacity: 0;
+    transition-duration: 1s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+}
+
+.chipImageSlide {
+    margin: 2px;
+}

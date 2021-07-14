@@ -1,0 +1,10 @@
+.Dashboard {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.titleDashboard {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

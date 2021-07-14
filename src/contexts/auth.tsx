@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import api from '../services/api'
 
+
 interface AuthContextData {
     signed: boolean;
     user: String | null;
