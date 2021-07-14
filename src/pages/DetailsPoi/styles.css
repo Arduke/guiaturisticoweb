@@ -63,36 +63,6 @@
     font-weight: bold !important;
 }
 
-.input_comentary_details_poi {
-    outline: none;
-    width: 83%;
-    height: 30px;
-    border-radius: 50px;
-    border: 2px solid #ada5a1;
-    padding: 5px;
-    text-decoration: none !important;
-}
-
-.icon_submit_details_poi {
-    cursor: pointer;
-    margin-top: 10px;
-    width: 30px;
-    height: 30px;
-    margin-left: 30px;
-    color: #ada5a1
-}
-
-.button_comentary_details_poi {
-    background-color: var(--color-primary);
-    width: 60px;
-    padding: 5px;
-    height: 30px;
-    border-radius: 20px;
-    margin-left: 15px;
-    color: #fff;
-    border: 2px solid var(--color-primary);
-} 
-
 .media_details_poi {
     height: 0;
     padding-top: 56%;

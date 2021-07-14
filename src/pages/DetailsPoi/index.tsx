@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./styles.css"
 
 import Menu from "../../components/Menu";
+import CommentaryInput from "../../components/Commentary"
 
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -14,14 +15,15 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ChatIcon from '@material-ui/icons/Chat';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { Button, Grid, Input } from "@material-ui/core";
-import SendIcon from '@material-ui/icons/Send';
+import { Grid } from "@material-ui/core";
 
-import { IoSendSharp } from 'react-icons/io5';
+
+import { useContext } from "react";
+import AuthContext from "../../contexts/auth";
 
 
 const DetailsPoi = () => {
-  
+    const { user } = useContext(AuthContext)
     const [expanded, setExpanded] = useState(false);
   
     const handleExpandClick = () => {
@@ -72,14 +74,21 @@ const DetailsPoi = () => {
                   
                 </CardContent>
                 <CardActions disableSpacing>
-                  <IconButton
-                    className="icone_comentary"
-                    onClick={handleExpandClick}
-                    aria-expanded={expanded}
-                    aria-label="show more"
+                  <Grid
+                    container
+                    direction="row"
+                    justifyContent="flex-end"
+                    alignItems="center"
                   >
-                    <ChatIcon className="icon_comentary"/>
-                  </IconButton>
+                    <IconButton
+                      className="icone_comentary"
+                      onClick={handleExpandClick}
+                      aria-expanded={expanded}
+                      aria-label="show more"
+                    >
+                      <ChatIcon className="icon_comentary"/>
+                    </IconButton>
+                  </Grid>
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                   <CardContent>
@@ -87,16 +96,12 @@ const DetailsPoi = () => {
                       Naruto Uzumaki
                     </Typography>
                     <Typography>
-                      Já chorei muito no balanço desse parque, mas hoje tenho bons momentos.
+                      Já chorei muito no balanço desse parque, mas hoje vivo bons momentos.
                     </Typography>
                   </CardContent>
 
-                  <CardContent>
-                  <input className="input_comentary_details_poi" placeholder="comente aqui..."/>
-                    {/* <button className="button_comentary_details_poi">
-                      Enviar
-                    </button> */}
-                    <IoSendSharp size="small" className="icon_submit_details_poi"/>
+                  <CardContent className="container_comentary">
+                  {user && <CommentaryInput />}
                   </CardContent>
                 </Collapse>
               </Card>
