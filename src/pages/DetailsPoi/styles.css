@@ -15,7 +15,8 @@
 
 .root_details_poi {
     margin: 50px 0;
-    max-width: 600px;
+    max-width: 75%;
+    min-width: 75%;
     box-shadow: -4px 7px 24px 0px rgba(199,191,199,1) !important;
 }
 

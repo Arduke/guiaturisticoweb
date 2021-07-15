@@ -20,12 +20,23 @@ import { Grid } from "@material-ui/core";
 
 import { useContext } from "react";
 import AuthContext from "../../contexts/auth";
-
+import { useParams } from "react-router-dom";
+import PoiContext from "../../contexts/poi";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const DetailsPoi = () => {
+    const { id } = useParams<{id: string}>()
+    const { poi, agencyName } = useContext(PoiContext)
+    
+    const fetch = useRef(useContext(PoiContext))
     const { user } = useContext(AuthContext)
     const [expanded, setExpanded] = useState(false);
-  
+
+    useEffect(() => {
+      fetch.current.fetchPoiById(id)
+    }, [id])
+
     const handleExpandClick = () => {
       setExpanded(!expanded);
     };
@@ -43,23 +54,22 @@ const DetailsPoi = () => {
               >
                 <CardHeader
                   className="card_header_details_poi"
-                  title ="Parque de Konoha"
-                  subheader="13/07/2021"
+                  title ={poi?.name || ""}
+                  subheader={poi?.createdAt || ""}
                   
                 />
                 <CardContent className="card_content_name_agency_details_poi">
-                  <Typography className="name_agency_details_poi">Agência Konoha</Typography>
+                  <Typography className="name_agency_details_poi">{agencyName?.name || ""}</Typography>
                 </CardContent>
                 </Grid>
                 <CardMedia
                   className="media_details_poi"
-                  image="https://source.unsplash.com/user/erondu/400x400"
-                  title="aleatoria"
+                  image={poi?.picture || ""}
+                  title={poi?.name || ""}
                 />
                 <CardContent>
                   <Typography variant="body2" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
+                    {poi?.description}
                   </Typography>
                   
                       <Grid
@@ -69,7 +79,7 @@ const DetailsPoi = () => {
                         alignItems="center"
                       >
                         <LocationOnIcon className="icon_location" fontSize="small"/>
-                        <Typography className="address_details_poi" variant="body2" color="textSecondary" component="p">Vila da Folha</Typography>
+                        <Typography className="address_details_poi" variant="body2" color="textSecondary" component="p">{poi?.address || ""}</Typography>
                       </Grid>
                   
                 </CardContent>

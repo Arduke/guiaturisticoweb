@@ -22,10 +22,7 @@ const ImageList: React.FC<Props> = ({ pois }) => {
                 {pois.map(poi => {
                     return (
                         <Link key={poi.id} className="linkDetails" to={{
-                            pathname: "/details",
-                            state: {
-                                poi: poi
-                            },
+                            pathname: `/details/${poi.id}`,
                         }}>
                             <Card className="rootImageList">
                                 <CardActionArea>
