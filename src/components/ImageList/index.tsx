@@ -13,9 +13,7 @@ interface Props {
 
 const ImageList: React.FC<Props> = ({ pois }) => {
     const { page, setPage, } = useContext(PoiContext);
-
-    console.log(pois.length)
-
+    
     return (
         <div>
             <div className="containerImageList">
