@@ -51,7 +51,7 @@ const ImageSlider: React.FC<Props> = ({ pois }) => {
                   </p>
                   <div className="chipList">
                     {poi.categories.map((categorie: Category) =>{
-                      return <Chip  key={categorie.id} label={categorie.name}></Chip>}
+                      return <Chip className="chip" key={categorie.id} label={categorie.name}></Chip>}
                     )}
                   </div>
                 </div>
