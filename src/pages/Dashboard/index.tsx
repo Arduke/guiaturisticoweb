@@ -9,6 +9,8 @@ import ImageSlider from '../../components/ImageSlider'
 import Menu from '../../components/Menu'
 import PoiContext from '../../contexts/poi'
 
+import DetailsPoi from '../DetailsPoi'
+
 const Dashboard: React.FC = () => {
   const { pois, poisCarousel } = useContext(PoiContext);
   const fetch = useRef(useContext(PoiContext));
