@@ -8,10 +8,11 @@ nav {
 
 label.logo {
 	color: white;
-	font-size: 35px;
 	line-height: 80px;
-	padding: 0 20px;
 	font-weight: bold;
+	font-size: 30px;
+	padding-left: 50px;
+	white-space: nowrap
 }
 
 nav ul {
@@ -28,7 +29,7 @@ nav ul li {
 
 nav ul li .link {
 	color: white;
-	font-size: 17px;
+	font-size: 16px;
 	padding: 7px 13px;
 	border-radius: 3px;
 	text-transform: uppercase;
@@ -51,17 +52,6 @@ nav ul li .link.active, nav ul li .link:hover {
 
 #check {
 	display: none;
-}
-
-@media (max-width: 950px) {
-	label.logo {
-		font-size: 30px;
-		padding-left: 50px;
-		white-space: nowrap
-	}
-	nav ul li .link {
-		font-size: 16px;
-	}
 }
 
 @media (max-width: 900px) {

@@ -21,7 +21,7 @@ function Menu() {
         <i className="fas fa-bars"></i>
       </label>
       <label className="logo">Guia Turístico</label>
-      <ul>
+      <ul className="ulMenu">
         <li> <Link className="link" to="/"> Home </Link> </li>
         <li> <Link className="link" to="/"> Sobre </Link> </li>
         <li> <Link className="link" to="/"> Contato </Link> </li>
