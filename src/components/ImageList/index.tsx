@@ -10,9 +10,8 @@ interface Props {
     pois: Array<any> | [{}]
 }
 
-
 const ImageList: React.FC<Props> = ({ pois }) => {
-    const { page, setPage, } = useContext(PoiContext);
+    const { page, setPage } = useContext(PoiContext);
     
     return (
         <div>
@@ -22,7 +21,7 @@ const ImageList: React.FC<Props> = ({ pois }) => {
                         <Link key={poi.id} className="linkDetails" to={{
                             pathname: `/details/${poi.id}`,
                         }}>
-                            <Card className="rootImageList">
+                            <Card className="rootImageList" >
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"

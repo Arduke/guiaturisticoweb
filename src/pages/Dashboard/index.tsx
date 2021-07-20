@@ -4,12 +4,11 @@ import { useEffect } from 'react'
 
 
 import "./styles.css"
+
 import ImageList from '../../components/ImageList'
 import ImageSlider from '../../components/ImageSlider'
 import Menu from '../../components/Menu'
 import PoiContext from '../../contexts/poi'
-
-import DetailsPoi from '../DetailsPoi'
 
 const Dashboard: React.FC = () => {
   const { pois, poisCarousel } = useContext(PoiContext);
@@ -28,7 +27,7 @@ const Dashboard: React.FC = () => {
       <h2 className="titleDashboard">
         CONHEÇA LUGARES NO MUNDO EM UM CLICK!
       </h2>
-      <ImageList pois={pois} />      
+      <ImageList pois={pois} />
       <div className="footerDashboard">
         todos os direitos reservados
       </div>
