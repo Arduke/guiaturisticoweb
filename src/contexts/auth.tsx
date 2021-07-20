@@ -2,30 +2,30 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import api from '../services/api'
 
-
 interface AuthContextData {
     signed: boolean;
-    user: String | null;
+    user: string | null;
     loading: Boolean;
-    alert: String;
-    setAlert(text: String): any;
-    Login(email: String, password: String, callback: Function): Promise<void>;
+    alert: string;
+    setAlert(text: string): any;
+    Login(email: string, password: string, callback: Function): Promise<void>;
     Logout(): Promise<void>;
     Register(user: User, callback: Function): Promise<void>;
 }
 
 interface User {
-    email: String;
-    password: String;
-    username: String;
+    email: string;
+    password: string;
+    username: string;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
+
 export const AuthProvider: React.FC = ({ children }) => {
-    const [user, setUser] = useState<String | null>(null);
+    const [user, setUser] = useState<string | null>(null);
     const [loading, setLoading] = useState<Boolean>(false);
-    const [alert, setAlert] = useState<String>('')
+    const [alert, setAlert] = useState<string>('')
 
 
     useEffect(() => {
@@ -39,7 +39,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     }, []);
 
 
-    const Login = async (email: String, password: String, callback: Function) => {
+    const Login = async (email: string, password: string, callback: Function) => {
         setLoading(true)
         try {
             const response = await api.post("/users/login", {
@@ -56,7 +56,6 @@ export const AuthProvider: React.FC = ({ children }) => {
                 callback()
             }
         } catch (error) {
-            console.log(error)
             if (error.response) {
                 Logout()
                 setLoading(false)

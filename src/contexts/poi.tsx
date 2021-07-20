@@ -2,24 +2,23 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import api from '../services/api'
 
-
 interface Poi {
-    address: String;
-    agencyId: String;
+    address: string;
+    agencyId: string;
     categories: any[];
-    createdAt: String;
-    updatedAt: String;
-    description: String;
-    id: String;
-    name: String;
-    picture: String;
+    createdAt: string;
+    updatedAt: string;
+    description: string;
+    id: string;
+    name: string;
+    picture: string;
 }
 
 interface PoiContextData {
     poisCarousel: Array<Poi> | [{}];
     pois: Array<Poi> | [{}];
     loading: Boolean;
-    alert: String;
+    alert: string;
     fetchAllPoi(): Promise<void>;
     fetchAllPoiCarousel(): Promise<void>;
     page: number;
@@ -35,11 +34,11 @@ export const PoiProvider: React.FC = ({ children }) => {
     const [pois, setPois] = useState<Array<Poi> | []>([])
     const [page, setPage] = useState<number>(1)
     const [loading, setLoading] = useState<Boolean>(false)
-    const [alert, setAlert] = useState<String>('')
+    const [alert, setAlert] = useState<string>('')
 
-    useEffect(() => {
-        fetchAllPoi()
-    }, [page])
+    // useEffect(() => {
+    //     fetchAllPoi()
+    // }, [page])
 
     useEffect(() => {
         const storagedToken = localStorage.getItem('@GuiaTuristico::token');
@@ -51,37 +50,37 @@ export const PoiProvider: React.FC = ({ children }) => {
 
 
     const fetchAllPoiCarousel = async () => {
-        setLoading(true)
-        try {
-            const response = await api.get(`/poi?page=${1}`)
+        // setLoading(true)
+        // try {
+        //     const response = await api.get(`/poi?page=${1}`)
 
-            if (response.status === 200) {
-                setPoisCarousel(response.data.data)
-                setLoading(false)
-            }
-        } catch (error) {
-            if (error.response) {
-                setLoading(false)
-                setAlert(error.response.data.message)
-            }
-        }
+        //     if (response.status === 200) {
+        //         setPoisCarousel(response.data.data)
+        //         setLoading(false)
+        //     }
+        // } catch (error) {
+        //     if (error.response) {
+        //         setLoading(false)
+        //         setAlert(error.response.data.message)
+        //     }
+        // }
     }
 
     const fetchAllPoi = async () => {
-        setLoading(true)
-        try {
-            const response = await api.get(`/poi?page=${page}`)
+        // setLoading(true)
+        // try {
+        //     const response = await api.get(`/poi?page=${page}`)
 
-            if (response.status === 200) {
-                setPois(response.data.data)
-                setLoading(false)
-            }
-        } catch (error) {
-            if (error.response) {
-                setLoading(false)
-                setAlert(error.response.data.message)
-            }
-        }
+        //     if (response.status === 200) {
+        //         setPois(response.data.data)
+        //         setLoading(false)
+        //     }
+        // } catch (error) {
+        //     if (error.response) {
+        //         setLoading(false)
+        //         setAlert(error.response.data.message)
+        //     }
+        // }
     }
 
     return (

@@ -29,7 +29,7 @@ const Login: React.FC = () => {
         Login(email, password, ()=>{history.push('/')})
     }
 
-    const handleChange = (event: any, label: String) => {
+    const handleChange = (event: any, label: string) => {
         label === "password" ?
             setPassword(event.target.value) :
             setEmail(event.target.value);

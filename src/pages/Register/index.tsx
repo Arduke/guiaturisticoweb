@@ -10,17 +10,17 @@ import AuthContext from '../../contexts/auth';
 
 
 interface Errors {
-  userEmail: String;
-  userPassword: String;
-  userName: String
+  userEmail: string;
+  userPassword: string;
+  userName: string
 }
 
 const Register: React.FC = () => {
   const { loading, Register, alert, setAlert } = useContext(AuthContext);
 
-  const [email, setEmail] = useState<String>('')
-  const [password, setPassword] = useState<String>('')
-  const [username, setUserName] = useState<String>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [username, setUserName] = useState<string>('')
   const [errors, setErrors] = useState<Errors>({ 'userEmail': '', 'userPassword': '', 'userName': '' })
   const [modal, setModal] = useState<boolean>(false)
 
@@ -51,7 +51,7 @@ const Register: React.FC = () => {
     return false;
   }
 
-  const handleChange = (event: any, label: String) => {
+  const handleChange = (event: any, label: string) => {
     if (label === "password") {
       setPassword(event.target.value)
     }

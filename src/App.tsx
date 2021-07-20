@@ -5,6 +5,7 @@ import { PoiProvider } from './contexts/poi';
 import { ChatProvider } from './contexts/chat';
 import "./global/styles.css"
 
+
 function App() {
   return (
     <AuthProvider>
