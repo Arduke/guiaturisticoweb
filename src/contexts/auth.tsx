@@ -1,26 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import api from '../services/api'
+import { IAuthContextData } from '../interface/context/IAuthContextData'
+import { IUserDto } from '../interface/user/IUser';
 
-
-interface AuthContextData {
-    signed: boolean;
-    user: String | null;
-    loading: Boolean;
-    alert: String;
-    setAlert(text: String): any;
-    Login(email: String, password: String, callback: Function): Promise<void>;
-    Logout(): Promise<void>;
-    Register(user: User, callback: Function): Promise<void>;
-}
-
-interface User {
-    email: String;
-    password: String;
-    username: String;
-}
-
-const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<String | null>(null);
@@ -72,7 +56,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         localStorage.removeItem('@GuiaTuristico::user')
     }
 
-    const Register = async (user: User, callback: Function) => {
+    const Register = async (user: IUserDto, callback: Function) => {
         setLoading(true)
         try {
             const response = await api.post("/users/", {

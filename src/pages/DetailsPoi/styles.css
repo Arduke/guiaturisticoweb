@@ -15,7 +15,8 @@
 
 .root_details_poi {
     margin: 50px 0;
-    max-width: 600px;
+    max-width: 75%;
+    min-width: 75%;
     box-shadow: -4px 7px 24px 0px rgba(199,191,199,1) !important;
 }
 
@@ -45,13 +46,14 @@
 }
 
 .icon_location {
+    margin-left: -4px;
     margin-top: 10px;
-    padding: 0;
     color: #908696;
 }
 
 .address_details_poi {
     margin-top: 12px !important;
+    font-size: 12px !important;
     color: var(--color-secondary)
 }
 
