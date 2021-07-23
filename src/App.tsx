@@ -3,6 +3,7 @@ import Routes from './routes';
 import { AuthProvider } from './contexts/auth';
 import { PoiProvider } from './contexts/poi';
 import { ChatProvider } from './contexts/chat';
+
 import "./global/styles.css"
 
 
@@ -11,7 +12,7 @@ function App() {
     <AuthProvider>
       <PoiProvider>
         <ChatProvider>
-          <Routes />
+          <Routes/>
         </ChatProvider>
       </PoiProvider>
     </AuthProvider>
