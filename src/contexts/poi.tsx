@@ -50,37 +50,37 @@ export const PoiProvider: React.FC = ({ children }) => {
 
 
     const fetchAllPoiCarousel = async () => {
-        // setLoading(true)
-        // try {
-        //     const response = await api.get(`/poi?page=${1}`)
+        setLoading(true)
+        try {
+            const response = await api.get(`/poi?page=${1}`)
 
-        //     if (response.status === 200) {
-        //         setPoisCarousel(response.data.data)
-        //         setLoading(false)
-        //     }
-        // } catch (error) {
-        //     if (error.response) {
-        //         setLoading(false)
-        //         setAlert(error.response.data.message)
-        //     }
-        // }
+            if (response.status === 200) {
+                setPoisCarousel(response.data.data)
+                setLoading(false)
+            }
+        } catch (error) {
+            if (error.response) {
+                setLoading(false)
+                setAlert(error.response.data.message)
+            }
+        }
     }
 
     const fetchAllPoi = async () => {
-        // setLoading(true)
-        // try {
-        //     const response = await api.get(`/poi?page=${page}`)
+        setLoading(true)
+        try {
+            const response = await api.get(`/poi?page=${page}`)
 
-        //     if (response.status === 200) {
-        //         setPois(response.data.data)
-        //         setLoading(false)
-        //     }
-        // } catch (error) {
-        //     if (error.response) {
-        //         setLoading(false)
-        //         setAlert(error.response.data.message)
-        //     }
-        // }
+            if (response.status === 200) {
+                setPois(response.data.data)
+                setLoading(false)
+            }
+        } catch (error) {
+            if (error.response) {
+                setLoading(false)
+                setAlert(error.response.data.message)
+            }
+        }
     }
 
     return (

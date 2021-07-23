@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ChatComponent from '../components/ChatComponent';
 
 // Its only for private rotes, but we dont have private rotes
 // import SignRoutes from './SignRoutes';
@@ -17,6 +18,7 @@ const Routes: React.FC = () => {
                 <Route exact path="/" component={Dashboard} />
                 <Route path="/login" component={Login} />
                 <Route path="/Register" component={Register} />
+                <Route path="/chat/:idUser/:idAgency" component={ChatComponent}/>
                 <Route path="*" component={() => { return (<div>ERROR PAGE</div>) }} />
             </Switch>
         </BrowserRouter>

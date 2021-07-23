@@ -1,8 +1,9 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, /*useContext*/ } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import AuthContext from './auth';
-import io from 'socket.io-client'
+//import AuthContext from './auth';
+
+import socket from '../services/socket'
 
 interface Message {
     ator: string;
@@ -12,39 +13,48 @@ interface Message {
 
 interface ChatContextData {
     messages: Array<Message> | any;
-    sendMessage(): any;
-    receiveMessage(): any;
+    setMessages(messages: string[]): any;
+    sendMessage(autor: string, room: string, message: string): any;
+    join(idroom: string): any;
 }
 
 const ChatContext = createContext<ChatContextData>({} as ChatContextData);
 
 export const ChatProvider: React.FC = ({ children }) => {
-    const [messages, setMessages] = useState<Array<Message>>()
-    const [alert, setAlert] = useState<string>('')
-    const [loading, setLoading] = useState<boolean>(false)
-    const { user } = useContext(AuthContext);
+    const [messages, setMessages] = useState<string[]>([])
 
+    useEffect(() => {
+        socket.connect()
 
-    let socket = io("http://localhost:7777/", { transports: ['websocket'] }) 
+        socket.on("receive-message", (data: string) => {
+            setMessages(prevState => ([...prevState, data]))
+            console.log(data)
+        })
 
+        socket.on("joined_room", (data: string[]) => {
+            setMessages(data)
+            console.log("joined")
+        })
+    }, [])
 
-    const sendMessage = () => {
-
+    const sendMessage = (autor: string, room: string, message: string) => {
+        socket.emit("send-message", { autor, room, message });
     }
 
-    const receiveMessage = () => {
-
+    const join = (idroom: string) => {
+        socket.emit("join", { idroom })
     }
 
     return (
         <ChatContext.Provider value={{
             messages,
+            setMessages,
             sendMessage,
-            receiveMessage
+            join,
         }}>
             {children}
         </ChatContext.Provider>
     )
 }
 
-export default ChatProvider;
+export default ChatContext;
