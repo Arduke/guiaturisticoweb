@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import api from '../services/api'
 
-interface AuthContextData {
+export interface AuthContextData {
     signed: boolean;
     user: string | null;
     loading: Boolean;
@@ -13,7 +13,7 @@ interface AuthContextData {
     Register(user: User, callback: Function): Promise<void>;
 }
 
-interface User {
+export interface User {
     email: string;
     password: string;
     username: string;

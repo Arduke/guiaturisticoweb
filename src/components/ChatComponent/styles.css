@@ -1,0 +1,76 @@
+.contentChat {
+  width: 400px;
+  height: 100%;
+  background-color: #5434af;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.titleChat {
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.548);
+}
+
+.listMessages {
+  list-style: none;
+  margin: 20px;
+  min-height: 300px;
+  max-height: 500px;
+  width: 90%;
+  background-color: white;
+}
+
+.uniqueMessage {
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.uniqueMessageLeft,
+.uniqueMessageRight {
+  width: 50%;
+}
+
+.fontName {
+  font-size: small;
+  color: #4a10e9;
+}
+
+.sendMessageInput {
+  width: 90%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.sendMessageInput input {
+  width: 85%;
+  height: 40px;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.sendMessageInput button {
+  width: 15%;
+  height: 40px;
+  border: 1px solid;
+  border-radius: 0px 4px 4px 0px;
+  background-color: rgb(47, 255, 75);
+}
+
+.sendMessageInput button:hover {
+  background-color: white;
+}
+
+.notFoundDashboard {
+  margin-top: 60px;
+}
+
+.notImageFound {
+  width: 80vw;
+  height: 50vh;
+}

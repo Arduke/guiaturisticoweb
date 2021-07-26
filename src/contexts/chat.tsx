@@ -15,6 +15,10 @@ interface ChatContextData {
     messages: Array<Message> | any;
     setMessages(messages: string[]): any;
     sendMessage(autor: string, room: string, message: string): any;
+    display: boolean;
+    setDisplay(boolean: boolean): void;
+    roomId: string;
+    setRoomId(string: string): void;
     join(idroom: string): any;
 }
 
@@ -22,6 +26,9 @@ const ChatContext = createContext<ChatContextData>({} as ChatContextData);
 
 export const ChatProvider: React.FC = ({ children }) => {
     const [messages, setMessages] = useState<string[]>([])
+    const [display, setDisplay] = useState<boolean>(false)
+    const [roomId, setRoomId] = useState<string>('')
+
 
     useEffect(() => {
         socket.connect()
@@ -50,6 +57,10 @@ export const ChatProvider: React.FC = ({ children }) => {
             messages,
             setMessages,
             sendMessage,
+            display,
+            setDisplay,
+            roomId,
+            setRoomId,
             join,
         }}>
             {children}

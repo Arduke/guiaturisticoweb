@@ -15,7 +15,7 @@ label.logo {
 }
 
 nav ul {
-	z-index: 10;
+	z-index: 100;
 	float: right;
 	margin-right: 200px;
 }
