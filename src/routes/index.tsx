@@ -8,6 +8,7 @@ import ChatComponent from '../components/ChatComponent';
 // import { useAuth } from '../contexts/auth';
 
 import Dashboard from '../pages/Dashboard'
+import DetailsPoi from '../pages/DetailsPoi';
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 
@@ -19,6 +20,7 @@ const Routes: React.FC = () => {
                 <Route path="/login" component={Login} />
                 <Route path="/Register" component={Register} />
                 <Route path="/chat/:idUser/:idAgency" component={ChatComponent}/>
+                <Route path="/Details/:id" component={DetailsPoi} />
                 <Route path="*" component={() => { return (<div>ERROR PAGE</div>) }} />
             </Switch>
         </BrowserRouter>

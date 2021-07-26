@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import api from '../services/api'
+import { IAuthContextData } from '../interface/context/IAuthContextData'
+import { IUserDto } from '../interface/user/IUser';
 
 export interface AuthContextData {
     signed: boolean;
@@ -19,7 +21,7 @@ export interface User {
     username: string;
 }
 
-const AuthContext = createContext<AuthContextData>({} as AuthContextData);
+const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
 
 export const AuthProvider: React.FC = ({ children }) => {
@@ -72,7 +74,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         localStorage.removeItem('@GuiaTuristico::user')
     }
 
-    const Register = async (user: User, callback: Function) => {
+    const Register = async (user: IUserDto, callback: Function) => {
         setLoading(true)
         try {
             const response = await api.post("/users/", {

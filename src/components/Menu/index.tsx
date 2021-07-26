@@ -21,14 +21,14 @@ function Menu() {
         <i className="fas fa-bars"></i>
       </label>
       <label className="logo">Guia Turístico</label>
-      <ul>
-        <li> <Link to="/"> Home </Link> </li>
-        <li> <Link to="/"> Sobre </Link> </li>
-        <li> <Link to="/"> Contato </Link> </li>
+      <ul className="ulMenu">
+        <li> <Link className="link" to="/"> Home </Link> </li>
+        <li> <Link className="link" to="/"> Sobre </Link> </li>
+        <li> <Link className="link" to="/"> Contato </Link> </li>
         {
           signed ?
             <li><Button onClick={handlelogout}><ExitToApp style={{ color: "white" }}></ExitToApp></Button></li>
-            : <li> <Link to="/login"> Login </Link> </li>
+            : <li> <Link className="link" to="/login"> Login </Link> </li>
         }
         <li><Button onClick={()=>{}}><Search style={{ color: "white" }}></Search></Button></li>
       </ul>

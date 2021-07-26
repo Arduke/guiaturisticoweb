@@ -30,10 +30,7 @@ const ImageList: React.FC<Props> = ({ pois }) => {
               key={poi.id}
               className="linkDetails"
               to={{
-                pathname: "/details",
-                state: {
-                  poi: poi,
-                },
+                pathname: `/details/${poi.id}`,
               }}
             >
               <Card className="rootImageList">
@@ -63,7 +60,6 @@ const ImageList: React.FC<Props> = ({ pois }) => {
           );
         })}
       </div>
-
       <div>
         <ButtonGroup
           variant="contained"

@@ -1,0 +1,26 @@
+:root {
+    --color-primary: #5434af;
+    --color-secondary: #ADACAF
+}
+
+.input_comentary_details_poi {
+    outline: none;
+    width: 86%;
+    height: 30px;
+    border-radius: 50px;
+    border: 2px solid var(--color-primary);
+    padding: 8px;
+    text-decoration: none !important;
+}
+
+.icon_submit_details_poi {
+    cursor: pointer;
+    margin-left: 12px;
+    width: 30px;
+    height: 30px;
+    color: var(--color-primary)
+}
+
+.button_modal_commentary_input span:last-of-type{
+    margin-top: 20px;
+}
