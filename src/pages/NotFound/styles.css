@@ -1,0 +1,11 @@
+.pageNotFound {
+  padding: 20px;
+  width: 80vw;
+  height: 70vh;
+}
+
+.notFound {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

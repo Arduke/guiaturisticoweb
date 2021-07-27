@@ -10,6 +10,7 @@ import ChatComponent from '../components/ChatComponent';
 import Dashboard from '../pages/Dashboard'
 import DetailsPoi from '../pages/DetailsPoi';
 import Login from '../pages/Login'
+import NotFound from '../pages/NotFound';
 import Register from '../pages/Register'
 
 const Routes: React.FC = () => {
@@ -21,7 +22,7 @@ const Routes: React.FC = () => {
                 <Route path="/Register" component={Register} />
                 <Route path="/chat/:idUser/:idAgency" component={ChatComponent}/>
                 <Route path="/Details/:id" component={DetailsPoi} />
-                <Route path="*" component={() => { return (<div>ERROR PAGE</div>) }} />
+                <Route path="*" component={NotFound} />
             </Switch>
         </BrowserRouter>
     )

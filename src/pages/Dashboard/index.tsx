@@ -21,7 +21,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="Dashboard">
       <Menu />
-      {pois ? (
+      {pois.length !== 0 ? (
         <div>
           <ImageSlider pois={poisCarousel.slice(0, 5)} />
           <h2 className="titleDashboard">
