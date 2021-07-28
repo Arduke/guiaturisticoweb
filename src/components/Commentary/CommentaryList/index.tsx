@@ -31,8 +31,6 @@ const CommentaryList: React.FC<Props> = ({ poi }) => {
     const [expanded, setExpanded] = useState(false);
     const fetch = useRef(useContext(PoiContext))
 
-    console.log('comments', comments)
-
     useEffect(() => {
         if (poi !== null) {
             fetch.current.fetchAllCommentWithTrueStatus(poi.id)

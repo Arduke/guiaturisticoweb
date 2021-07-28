@@ -1,71 +1,70 @@
-import React, { createContext, /*useContext*/ } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-//import AuthContext from './auth';
+import React, { createContext /*useContext*/ } from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 
-import socket from '../services/socket'
+import socket from "../services/socket";
+import {IMessage} from '../interface/message/IMessage'
 
-interface Message {
-    ator: string;
-    message: string;
-    receive: string
-}
 
 interface ChatContextData {
-    messages: Array<Message> | any;
-    setMessages(messages: string[]): any;
-    sendMessage(autor: string, room: string, message: string): any;
-    display: boolean;
-    setDisplay(boolean: boolean): void;
-    roomId: string;
-    setRoomId(string: string): void;
-    join(idroom: string): any;
+  messages: Array<IMessage> | any;
+  setMessages(messages: IMessage[]): any;
+  sendMessage(autor: string, room: string, message: string): any;
+  display: boolean;
+  setDisplay(boolean: boolean): void;
+  roomId: string;
+  setRoomId(string: string): void;
+  join(agencyId: string, userId: string): any;
 }
 
 const ChatContext = createContext<ChatContextData>({} as ChatContextData);
 
 export const ChatProvider: React.FC = ({ children }) => {
-    const [messages, setMessages] = useState<string[]>([])
-    const [display, setDisplay] = useState<boolean>(false)
-    const [roomId, setRoomId] = useState<string>('')
+  const [messages, setMessages] = useState<IMessage[]>([]);
+  const [display, setDisplay] = useState<boolean>(false);
+  const [roomId, setRoomId] = useState<string>("");
 
 
-    useEffect(() => {
-        socket.connect()
+  
+  useEffect(() => {
+    socket.connect();
 
-        socket.on("receive-message", (data: string) => {
-            setMessages(prevState => ([...prevState, data]))
-            console.log(data)
-        })
+    socket.on("received_message", (data: IMessage) => {
+      setMessages((prevState) => [...prevState, data]);
+      console.log(data)
+    });
 
-        socket.on("joined_room", (data: string[]) => {
-            setMessages(data)
-            console.log("joined")
-        })
-    }, [])
+    socket.on("joined_room", (data: {roomId: string, messages: IMessage[]}) => {
+      setMessages(data.messages)
+      setRoomId(data.roomId)
+    });
+  }, []);
 
-    const sendMessage = (autor: string, room: string, message: string) => {
-        socket.emit("send-message", { autor, room, message });
-    }
+  const sendMessage = (author: string, roomId: string, message: string) => {
+    socket.emit("send_message", { roomId: roomId, author: author, content: message });
+    console.log(message)
+  };
 
-    const join = (idroom: string) => {
-        socket.emit("join", { idroom })
-    }
+  const join = (agencyId: string, userId: string) => {
+    socket.emit("join", { agencyId: agencyId, userId: userId });
+  };
 
-    return (
-        <ChatContext.Provider value={{
-            messages,
-            setMessages,
-            sendMessage,
-            display,
-            setDisplay,
-            roomId,
-            setRoomId,
-            join,
-        }}>
-            {children}
-        </ChatContext.Provider>
-    )
-}
+  return (
+    <ChatContext.Provider
+      value={{
+        messages,
+        setMessages,
+        sendMessage,
+        display,
+        setDisplay,
+        roomId,
+        setRoomId,
+        join,
+      }}
+    >
+      {children}
+    </ChatContext.Provider>
+  );
+};
 
 export default ChatContext;

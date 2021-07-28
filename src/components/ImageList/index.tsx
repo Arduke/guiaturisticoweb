@@ -79,7 +79,7 @@ const ImageList: React.FC<Props> = ({ pois }) => {
           </Button>
           <Button>Página {page}</Button>
           <Button
-            disabled={pois.length <= 0 || pois.length < 5 ? true : false}
+            disabled={pois.length <= 5  ? true : false}
             variant="contained"
             color="default"
             endIcon={<ArrowForwardIos />}

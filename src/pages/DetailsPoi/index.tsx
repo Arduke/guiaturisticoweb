@@ -1,34 +1,36 @@
-import "./styles.css"
+import "./styles.css";
 
 import Menu from "../../components/Menu";
-import CommentaryList from "../../components/Commentary/CommentaryList"
+import CommentaryList from "../../components/Commentary/CommentaryList";
 
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { Grid } from "@material-ui/core";
-import { Chip } from '@material-ui/core';
+import { Chip } from "@material-ui/core";
 
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PoiContext from "../../contexts/poi";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { ICategory } from '../../interface/category/ICategory'
+import { ICategory } from "../../interface/category/ICategory";
 
-//TODO: formatar data 
+//TODO: formatar data
 
 const DetailsPoi: React.FC = () => {
-  const { id } = useParams<{ id: string }>()
-  const { poi, agencyName } = useContext(PoiContext)
-  const fetch = useRef(useContext(PoiContext))
+  const { id } = useParams<{ id: string }>();
+  const { poi, agencyName } = useContext(PoiContext);
+  const fetch = useRef(useContext(PoiContext));
+
+  const idUser = localStorage.getItem("@GuiaTuristico::userid");
 
   useEffect(() => {
-    fetch.current.fetchPoiById(id)
-  }, [id])
+    fetch.current.fetchPoiById(id);
+  }, [id]);
 
   return (
     <div className="container_details ">
@@ -45,12 +47,16 @@ const DetailsPoi: React.FC = () => {
             className="card_header_details_poi"
             title={poi?.name || ""}
             subheader={poi?.createdAt || ""}
-
           />
           <CardContent className="card_content_name_agency_details_poi">
-            <Typography className="name_agency_details_poi">{agencyName?.name || ""}</Typography>
+            <Link to={`/chat/${agencyName?.id}/${idUser}`}>
+              <Typography className="name_agency_details_poi">
+                {agencyName?.name || ""}
+              </Typography>
+            </Link>
           </CardContent>
         </Grid>
+        {/* AQUI TA DANDO WARNING MAIOR QUE MEU PIRU */}
         <CardContent>
           <Grid
             container
@@ -58,17 +64,17 @@ const DetailsPoi: React.FC = () => {
             justifyContent="space-around"
             alignItems="center"
           >
-            <Typography variant="body2" color="textSecondary" component="p">
+            <div>
               {poi?.categories.map((categorie: ICategory) => {
                 return <Chip key={categorie.id} label={categorie.name}></Chip>
               }
               )}
-            </Typography>
+            </div>
           </Grid>
         </CardContent>
         <CardMedia
           className="media_details_poi"
-          image={poi?.picture || ""}
+          image={poi?.picture || "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/3136/image-not-found.jpg"}
           title={poi?.name || ""}
         />
         <CardContent>
@@ -87,7 +93,8 @@ const DetailsPoi: React.FC = () => {
               className="address_details_poi"
               variant="body2"
               color="textSecondary"
-              component="p">
+              component="p"
+            >
               {poi?.address || ""}
             </Typography>
           </Grid>
@@ -96,11 +103,9 @@ const DetailsPoi: React.FC = () => {
         <CardContent>
           <CommentaryList poi={poi} />
         </CardContent>
-
       </Card>
     </div>
-
   );
-}
+};
 
-export default DetailsPoi
+export default DetailsPoi;

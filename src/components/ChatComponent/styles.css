@@ -1,13 +1,26 @@
+.contentAllChatPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+
 .contentChat {
-  width: 400px;
-  height: 100%;
+  width: 70%;
+  min-width: 400px;
+  height: 500px;
   background-color: #5434af;
   display: flex;
   align-items: center;
+  border-radius: 10px;
   flex-direction: column;
 }
 
 .titleChat {
+  padding-top: 10px;
+  padding-bottom: 10px;
   font-weight: 600;
   color: white;
   text-align: center;
@@ -24,7 +37,7 @@
 }
 
 .uniqueMessage {
-  margin: 10px;
+  margin: 20px 10px 20px 10px;
   width: 100%;
   display: flex;
   flex-direction: row;

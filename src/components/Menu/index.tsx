@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Input } from '@material-ui/core';
+import { Button} from '@material-ui/core';
 import { ExitToApp, Search } from "@material-ui/icons"
 
 import "./styles.css"

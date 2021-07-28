@@ -14,7 +14,7 @@ export const PoiProvider: React.FC = ({ children }) => {
   const [pois, setPois] = useState<Array<IPoi> | []>([]);
   const [poi, setPoi] = useState<IPoi | null>(null);
   const [agencyName, setAgencyName] = useState<IAgency | null>(null);
-  const [userName, setUserName] = useState<IUser | null>(null);
+  const [userName, /*setUserName*/] = useState<IUser | null>(null);
   const [comments, setComments] = useState<IComment[] | []>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<Boolean>(false);
