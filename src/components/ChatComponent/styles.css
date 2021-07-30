@@ -5,24 +5,27 @@
   text-align: center;
   width: 100vw;
   height: 100vh;
+  background-color: transparent;
 }
 
 .contentChat {
   width: 70%;
-  min-width: 400px;
+  min-width: 300px;
   height: 500px;
-  background-color: #5434af;
   display: flex;
   align-items: center;
   border-radius: 10px;
   flex-direction: column;
+  margin: 20px;
+  border: 1px solid gray;
+  box-shadow: 1px 3px 3px gray;
 }
 
 .titleChat {
   padding-top: 10px;
   padding-bottom: 10px;
   font-weight: 600;
-  color: white;
+  color: #5626da;
   text-align: center;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.548);
 }
@@ -34,23 +37,39 @@
   max-height: 500px;
   width: 90%;
   background-color: white;
+  color: white;
+}
+
+.grayMessage {
+  padding: 10px 15px 10px 10px;
+  margin: 2px;
+  border-radius: 9px 9px 0px 9px;
+  background-color: gray;
+}
+
+.blueMessage {
+  padding: 10px 10px 10px 15px;
+  margin: 2px;
+  border-radius: 9px 9px 9px 0px;
+  background-color: #6c42dd;
+}
+
+.messageStart {
+  justify-content: flex-start;
+}
+
+.messageEnd {
+  justify-content: flex-end;
 }
 
 .uniqueMessage {
-  margin: 20px 10px 20px 10px;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
 
-.uniqueMessageLeft,
-.uniqueMessageRight {
-  width: 50%;
-}
-
-.fontName {
-  font-size: small;
-  color: #4a10e9;
+.pMessage {
+  font-size: 14px;
 }
 
 .sendMessageInput {
@@ -60,22 +79,9 @@
 }
 
 .sendMessageInput input {
-  width: 85%;
+  width: 80%;
   height: 40px;
   border: 1px solid;
   padding: 10px;
-  border-radius: 4px 0px 0px 4px;
+  border-radius: 4px;
 }
-
-.sendMessageInput button {
-  width: 15%;
-  height: 40px;
-  border: 1px solid;
-  border-radius: 0px 4px 4px 0px;
-  background-color: rgb(47, 255, 75);
-}
-
-.sendMessageInput button:hover {
-  background-color: white;
-}
-

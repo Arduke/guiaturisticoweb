@@ -9,8 +9,9 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import { Grid } from "@material-ui/core";
+import { Grid, IconButton } from "@material-ui/core";
 import { Chip } from "@material-ui/core";
+import ForumIcon from "@material-ui/icons/Forum";
 
 import { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -18,13 +19,16 @@ import PoiContext from "../../contexts/poi";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { ICategory } from "../../interface/category/ICategory";
+import AuthContext from "../../contexts/auth";
 
 //TODO: formatar data
 
 const DetailsPoi: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+
   const { poi, agencyName } = useContext(PoiContext);
   const fetch = useRef(useContext(PoiContext));
+  const {user} = useContext(AuthContext)
 
   const idUser = localStorage.getItem("@GuiaTuristico::userid");
 
@@ -35,7 +39,6 @@ const DetailsPoi: React.FC = () => {
   return (
     <div className="container_details ">
       <Menu />
-
       <Card className="root_details_poi">
         <Grid
           container
@@ -49,14 +52,19 @@ const DetailsPoi: React.FC = () => {
             subheader={poi?.createdAt || ""}
           />
           <CardContent className="card_content_name_agency_details_poi">
-            <Link to={`/chat/${agencyName?.id}/${idUser}`}>
-              <Typography className="name_agency_details_poi">
-                {agencyName?.name || ""}
-              </Typography>
-            </Link>
+            <Typography className="name_agency_details_poi">
+              {agencyName?.name || ""}
+              {user ?
+              (
+                <Link to={`/chat/${agencyName?.id}/${idUser}`}>
+                  <IconButton style={{ margin: "4px" }}>
+                    <ForumIcon color="primary" />
+                  </IconButton>
+                </Link>
+              ): <></>}
+            </Typography>
           </CardContent>
         </Grid>
-        {/* AQUI TA DANDO WARNING MAIOR QUE MEU PIRU */}
         <CardContent>
           <Grid
             container
@@ -66,15 +74,17 @@ const DetailsPoi: React.FC = () => {
           >
             <div>
               {poi?.categories.map((categorie: ICategory) => {
-                return <Chip key={categorie.id} label={categorie.name}></Chip>
-              }
-              )}
+                return <Chip key={categorie.id} label={categorie.name}></Chip>;
+              })}
             </div>
           </Grid>
         </CardContent>
         <CardMedia
           className="media_details_poi"
-          image={poi?.picture || "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/3136/image-not-found.jpg"}
+          image={
+            poi?.picture ||
+            "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/3136/image-not-found.jpg"
+          }
           title={poi?.name || ""}
         />
         <CardContent>

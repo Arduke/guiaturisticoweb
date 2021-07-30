@@ -1,72 +1,96 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Paper } from "@material-ui/core";
+import { useParams, useHistory } from "react-router-dom";
+import { IconButton, Paper } from "@material-ui/core";
 
 import "./styles.css";
 import ChatContext from "../../contexts/chat";
 import AuthContext from "../../contexts/auth";
 import { IMessage } from "../../interface/message/IMessage";
 import PoiContext from "../../contexts/poi";
+import { ArrowBackIos, Send } from "@material-ui/icons";
 
 const ChatComponent: React.FC = () => {
   const [message, setMessage] = useState<string>("");
   const { sendMessage, messages, join, roomId } = useContext(ChatContext);
   const { user } = useContext(AuthContext);
-  const {agencyName} = useContext(PoiContext)
+  const { agencyName } = useContext(PoiContext);
   const { idAgency, idUser } = useParams<any>();
+
+  const history = useHistory();
 
   useEffect(() => {
     join(idAgency, idUser);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idUser, idAgency]);
 
-  const handleClick = () => {
+  const handleClick = (event: any) => {
+    event.preventDefault();
     if (user) {
       sendMessage(user, roomId, message);
+      setMessage("");
     }
   };
 
   return (
-    <div className="contentAllChatPage">
-      <div className="contentChat">
-        <h1 className="titleChat">{agencyName?.name || ""}</h1>
-        <Paper style={{ maxHeight: 400, width: "90%", overflow: "auto" }}>
-          <ul className="listMessages">
-            {messages.map((message: IMessage) => {
-              if (1 % 2 === 0) {
+    <>
+      <div onClick={() => history.goBack()}>
+        <IconButton
+          style={{ position: "absolute", margin: "20px" }}
+          aria-label="delete"
+        >
+          <ArrowBackIos color="primary" />
+        </IconButton>
+      </div>
+      <div className="contentAllChatPage">
+        <div className="contentChat">
+          <h1 className="titleChat">{agencyName?.name || "Bate-Papo"}</h1>
+          <Paper
+            elevation={2}
+            style={{
+              maxHeight: 400,
+              width: "90%",
+              overflow: "auto",
+              border: "1px solid gray",
+              padding: "20px",
+            }}
+          >
+            <ul className="listMessages">
+              {messages.map((message: IMessage) => {
                 return (
-                  <li className="uniqueMessage" key={message.id}>
-                    <div className="uniqueMessageLeft"></div>
-                    <div className="uniqueMessageRight">
-                      <h4 className="fontName">{message.author}</h4>
-                      <p style={{ marginLeft: "3px", fontSize: "14px" }}>
-                        {message.content}
-                      </p>
+                  <li
+                    className={`uniqueMessage ${
+                      message.author === "Agencia"
+                        ? "messageEnd"
+                        : "messageStart"
+                    }`}
+                    key={message.id}
+                  >
+                    <div
+                      className={`${
+                        message.author === "Agencia"
+                          ? "grayMessage"
+                          : "blueMessage"
+                      }`}
+                    >
+                      <p className="pMessage">{message.content}</p>
                     </div>
                   </li>
                 );
-              } else {
-                return (
-                  <li className="uniqueMessage" key={message.id}>
-                    <div className="uniqueMessageLeft">
-                      <h4 className="fontName">{message.author}</h4>
-                      <p style={{ marginLeft: "3px", fontSize: "14px" }}>
-                        {message.content}
-                      </p>
-                    </div>
-                    <div className="uniqueMessageRight"></div>
-                  </li>
-                );
-              }
-            })}
-          </ul>
-        </Paper>
-        <div className="sendMessageInput">
-          <input value={message} onChange={(e) => setMessage(e.target.value)} />
-          <button onClick={handleClick}>Enviar</button>
+              })}
+            </ul>
+          </Paper>
+          <form onSubmit={handleClick} className="sendMessageInput">
+            <input
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <IconButton type="submit" style={{ margin: "10px" }}>
+              <Send color="action" />
+            </IconButton>
+          </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

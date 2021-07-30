@@ -71,6 +71,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     setUser(null);
     localStorage.removeItem("@GuiaTuristico::token");
     localStorage.removeItem("@GuiaTuristico::user");
+    localStorage.removeItem("@GuiaTuristico::userid");
   };
 
   const Register = async (user: IUserDto, callback: Function) => {

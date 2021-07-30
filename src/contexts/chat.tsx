@@ -24,29 +24,31 @@ export const ChatProvider: React.FC = ({ children }) => {
   const [display, setDisplay] = useState<boolean>(false);
   const [roomId, setRoomId] = useState<string>("");
 
-
   
   useEffect(() => {
     socket.connect();
 
     socket.on("received_message", (data: IMessage) => {
       setMessages((prevState) => [...prevState, data]);
-      console.log(data)
+      console.log("RECEIVED-MESSAGE")
     });
 
     socket.on("joined_room", (data: {roomId: string, messages: IMessage[]}) => {
       setMessages(data.messages)
       setRoomId(data.roomId)
+      console.log("JOINED")
     });
   }, []);
 
   const sendMessage = (author: string, roomId: string, message: string) => {
     socket.emit("send_message", { roomId: roomId, author: author, content: message });
     console.log(message)
+    console.log("SEND-MESSAGE")
   };
 
   const join = (agencyId: string, userId: string) => {
     socket.emit("join", { agencyId: agencyId, userId: userId });
+    console.log("JOIN")
   };
 
   return (
