@@ -1,40 +1,45 @@
+import { useContext, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import GoogleMapReact from "google-map-react";
+
 import "./styles.css";
+import {
+  Chip,
+  Grid,
+  IconButton,
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  Typography,
+} from "@material-ui/core";
+import { LocationOn, Forum, Room } from "@material-ui/icons/";
 
 import Menu from "../../components/Menu";
 import CommentaryList from "../../components/Commentary/CommentaryList";
-
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
-import { Grid, IconButton } from "@material-ui/core";
-import { Chip } from "@material-ui/core";
-import ForumIcon from "@material-ui/icons/Forum";
-
-import { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
 import PoiContext from "../../contexts/poi";
-import { useRef } from "react";
-import { useEffect } from "react";
-import { ICategory } from "../../interface/category/ICategory";
 import AuthContext from "../../contexts/auth";
+import { ICategory } from "../../interface/category/ICategory";
+
+
+const AgulhaComponent: React.FC<any> = ({ text }) => (
+  <div>
+    <Room color="error">Danilo Sem Bamisa</Room>
+  </div>
+);
 
 //TODO: formatar data
-
 const DetailsPoi: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-
-  const { poi, agencyName } = useContext(PoiContext);
-  const fetch = useRef(useContext(PoiContext));
-  const {user} = useContext(AuthContext)
+  const { poi, agencyName, fetchPoiById } = useContext(PoiContext);
+  const { user } = useContext(AuthContext);
 
   const idUser = localStorage.getItem("@GuiaTuristico::userid");
 
   useEffect(() => {
-    fetch.current.fetchPoiById(id);
-  }, [id]);
+    fetchPoiById(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="container_details ">
@@ -54,14 +59,15 @@ const DetailsPoi: React.FC = () => {
           <CardContent className="card_content_name_agency_details_poi">
             <Typography className="name_agency_details_poi">
               {agencyName?.name || ""}
-              {user ?
-              (
+              {user ? (
                 <Link to={`/chat/${agencyName?.id}/${idUser}`}>
                   <IconButton style={{ margin: "4px" }}>
-                    <ForumIcon color="primary" />
+                    <Forum color="primary" />
                   </IconButton>
                 </Link>
-              ): <></>}
+              ) : (
+                <></>
+              )}
             </Typography>
           </CardContent>
         </Grid>
@@ -98,7 +104,7 @@ const DetailsPoi: React.FC = () => {
             justifyContent="flex-start"
             alignItems="center"
           >
-            <LocationOnIcon className="icon_location" fontSize="small" />
+            <LocationOn className="icon_location" fontSize="small" />
             <Typography
               className="address_details_poi"
               variant="body2"
@@ -110,6 +116,30 @@ const DetailsPoi: React.FC = () => {
           </Grid>
         </CardContent>
 
+        <div className="divGoogleMapNormal">
+          {poi !== null ? (
+            <div className="mapGoogle">
+              <GoogleMapReact
+                bootstrapURLKeys={{
+                  key: "AIzaSyCTBSgVbSHEIMoxutFSSUXC4DNEg3SfCC8",
+                }}
+                defaultCenter={{
+                  lat: Number(poi.lat),
+                  lng: Number(poi.lng),
+                }}
+                defaultZoom={15}
+              >
+                <AgulhaComponent
+                  lat={Number(poi.lat)}
+                  lng={Number(poi.lng)}
+                  text="Marker"
+                />
+              </GoogleMapReact>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
         <CardContent>
           <CommentaryList poi={poi} />
         </CardContent>
