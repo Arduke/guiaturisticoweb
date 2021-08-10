@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 import api from "../services/api";
 import { IPoiContextData } from "../interface/context/IPoiContextData";
@@ -11,10 +11,11 @@ const PoiContext = createContext<IPoiContextData>({} as IPoiContextData);
 
 export const PoiProvider: React.FC = ({ children }) => {
   const [poisCarousel, setPoisCarousel] = useState<Array<IPoi> | []>([]);
+  const [searchPois, setSearchPois] = useState<Array<IPoi> | []>([]);
   const [pois, setPois] = useState<Array<IPoi> | []>([]);
   const [poi, setPoi] = useState<IPoi | null>(null);
   const [agencyName, setAgencyName] = useState<IAgency | null>(null);
-  const [userName, /*setUserName*/] = useState<IUser | null>(null);
+  const [userName /*setUserName*/] = useState<IUser | null>(null);
   const [comments, setComments] = useState<IComment[] | []>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<Boolean>(false);
@@ -22,7 +23,7 @@ export const PoiProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     fetchAllPoi();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   useEffect(() => {
@@ -32,6 +33,23 @@ export const PoiProvider: React.FC = ({ children }) => {
       api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
     }
   }, []);
+
+  const searchPoi = async (search: string) => {
+    setLoading(true);
+    try {
+      const response = await api.get(`/poi/search?name=${search}`);
+
+      if (response.status === 200) {
+        setSearchPois(response.data);
+        setLoading(false);
+      }
+    } catch (error) {
+      if (error.response) {
+        setLoading(false);
+        setAlert(error.response.data.message);
+      }
+    }
+  };
 
   const fetchAllPoi = async () => {
     setLoading(true);
@@ -136,11 +154,13 @@ export const PoiProvider: React.FC = ({ children }) => {
         poisCarousel,
         pois,
         poi,
+        searchPois,
         comments,
         userName,
         agencyName,
         loading,
         alert,
+        searchPoi,
         fetchAllPoiCarousel,
         fetchAllPoi,
         fetchPoiById,
@@ -154,11 +174,5 @@ export const PoiProvider: React.FC = ({ children }) => {
     </PoiContext.Provider>
   );
 };
-
-export function useAuth() {
-  const context = useContext(PoiContext);
-
-  return context;
-}
 
 export default PoiContext;

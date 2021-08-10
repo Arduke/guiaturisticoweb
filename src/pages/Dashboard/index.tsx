@@ -20,7 +20,7 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="Dashboard">
-      <Menu />
+      <Menu/>
       {(pois.length !== 0 && poisCarousel.length !== 0) ? (
         <div>
           <ImageSlider pois={poisCarousel.slice(0, 5)} />

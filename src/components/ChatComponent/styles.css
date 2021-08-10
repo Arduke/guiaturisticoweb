@@ -76,6 +76,8 @@
   width: 90%;
   margin-bottom: 20px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: row;
 }
 
 .sendMessageInput input {
@@ -84,4 +86,8 @@
   border: 1px solid;
   padding: 10px;
   border-radius: 4px;
+}
+
+.iconUpload {
+  width: 10%;
 }

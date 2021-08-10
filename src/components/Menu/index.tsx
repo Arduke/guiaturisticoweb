@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button} from '@material-ui/core';
-import { ExitToApp, Search } from "@material-ui/icons"
+import { ExitToApp} from "@material-ui/icons"
 
 import "./styles.css"
 import AuthContext from '../../contexts/auth';
+import SearchComponent from '../SearchComponent';
 
 function Menu() {
   const { signed, Logout } = useContext(AuthContext);
@@ -29,7 +30,7 @@ function Menu() {
             : <li> <Link className="link" to="/login"> Login </Link> </li>
         }
         <li>
-          <Button onClick={()=>{}}><Search style={{ color: "white" }}></Search></Button>
+          <SearchComponent/>
         </li>
       </ul>
     </nav>

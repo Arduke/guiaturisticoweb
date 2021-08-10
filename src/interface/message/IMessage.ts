@@ -3,4 +3,5 @@ export interface IMessage {
   roomId: string;
   author: string;
   content: string;
+  picture: any | null;
 }

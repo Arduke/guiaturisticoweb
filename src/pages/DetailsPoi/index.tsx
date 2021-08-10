@@ -21,10 +21,9 @@ import PoiContext from "../../contexts/poi";
 import AuthContext from "../../contexts/auth";
 import { ICategory } from "../../interface/category/ICategory";
 
-
 const AgulhaComponent: React.FC<any> = ({ text }) => (
   <div>
-    <Room color="error">Danilo Sem Bamisa</Room>
+    <Room color="error">{text}</Room>
   </div>
 );
 
