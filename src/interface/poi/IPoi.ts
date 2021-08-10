@@ -1,15 +1,15 @@
 import { ICategory } from "../category/ICategory";
 
 export interface IPoi {
-    address: string;
-    agencyId: string;
-    categories: ICategory[];
-    createdAt: string;
-    updatedAt: string;
-    description: string;
-    lat: number;
-    lng: number;
-    id: string;
-    name: string;
-    picture: string;
+  id: string;
+  name: string;
+  agencyId: string;
+  description: string;
+  address: string;
+  lat: number;
+  lng: number;
+  picture: string;
+  categories: ICategory[];
+  createdAt: string;
+  updatedAt: string;
 }

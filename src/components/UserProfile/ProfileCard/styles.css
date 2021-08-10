@@ -1,0 +1,47 @@
+.ProfileCard {
+  display: flex;
+  justify-content: center;
+}
+
+.CardInfos {
+  margin: 10px;
+  width: 300px;
+  height: 300px;
+}
+
+.CardUsername {
+  display: flex;
+  justify-content: center;
+}
+
+div .MuiTypography-h5 {
+  display: flex;
+  justify-content: center;
+  max-width: 268px;
+  overflow: hidden;
+}
+
+.CardAvatar {
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-content: center;
+  margin-left: 92px;
+  padding: 2px;
+  height: 102px;
+  width: 102px;
+}
+
+.ProfileTypo {
+  display: flex;
+  align-content: center;
+  overflow: hidden;
+  padding: 16px;
+  height: 92px;
+  width: 268px;
+}
+
+.MuiTypography-root {
+  display: flex;
+  justify-content: center;
+}

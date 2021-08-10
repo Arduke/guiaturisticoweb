@@ -2,24 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 import api from "../services/api";
 import { IAuthContextData } from "../interface/context/IAuthContextData";
-import { IUserDto } from "../interface/user/IUser";
-
-export interface AuthContextData {
-  signed: boolean;
-  user: string | null;
-  loading: Boolean;
-  alert: string;
-  setAlert(text: string): any;
-  Login(email: string, password: string, callback: Function): Promise<void>;
-  Logout(): Promise<void>;
-  Register(user: User, callback: Function): Promise<void>;
-}
-
-export interface User {
-  email: string;
-  password: string;
-  username: string;
-}
+import { Favorites, IUser, IUserDto } from "../interface/user/IUser";
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
@@ -27,6 +10,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<string | null>(null);
   const [loading, setLoading] = useState<Boolean>(false);
   const [alert, setAlert] = useState<string>("");
+  const [favorites, setFavorites] = useState<Favorites[] | null>(null);
+  const [userInfo, setUserInfo] = useState<IUser | null>(null);
 
   useEffect(() => {
     const storagedUser = localStorage.getItem("@GuiaTuristico::user");
@@ -97,6 +82,67 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   };
 
+  const getFavorites = async (userId: string) => {
+    try {
+      const token = localStorage.getItem("@GuiaTuristico::token");
+      const response = await api.get(`/users/favorites/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.status === 200) {
+        setFavorites(response.data);
+      }
+    } catch (error) {
+      //faz nada
+    }
+  };
+
+  const addFavorite = async (userId: string, poiId: string) => {
+    try {
+      setLoading(true);
+      const response = await api.post(`/users/favorites/${userId}`, poiId);
+      if (response.status === 201) {
+        setLoading(false);
+        setFavorites(response.data);
+      }
+    } catch (error) {
+      setLoading(false);
+      setAlert(error.response.data.message);
+    }
+  };
+
+  const removeFavorite = async (userId: string, poiId: string) => {
+    try {
+      setLoading(true);
+      const response = await api.delete(`/users/favorites/${userId}`, {
+        data: { poiId },
+      });
+      if (response.status === 200) {
+        setLoading(false);
+        setFavorites(response.data);
+      }
+    } catch (error) {
+      setLoading(false);
+      setAlert(error.response.data.message);
+    }
+  };
+
+  const getUserInfo = async (userId: string) => {
+    try {
+      const token = localStorage.getItem("@GuiaTuristico::token");
+      setLoading(true);
+      const response = await api.get(`/users/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.status === 200) {
+        setLoading(false);
+        setUserInfo(response.data as IUser);
+      }
+    } catch (error) {
+      setLoading(false);
+      setAlert(error.response.data.message);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -104,10 +150,16 @@ export const AuthProvider: React.FC = ({ children }) => {
         user,
         loading,
         alert,
+        favorites,
+        userInfo,
         setAlert,
+        getUserInfo,
         Login,
         Logout,
         Register,
+        getFavorites,
+        addFavorite,
+        removeFavorite,
       }}
     >
       {children}
