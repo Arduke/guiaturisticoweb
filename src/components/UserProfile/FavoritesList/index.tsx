@@ -1,19 +1,13 @@
-import React, { useEffect, useContext } from "react";
-import Loading from "react-loading";
+import React from "react";
 
 import FavoriteCard from "./FavoriteCard/";
-import AuthContext from "../../../contexts/auth";
 
 import "./styles.css";
+import { useContext } from "react";
+import AuthContext from "../../../contexts/auth";
 
 const FavoritesList: React.FC = () => {
-  const { favorites, getFavorites, loading } = useContext(AuthContext);
-  const userId = localStorage.getItem("@GuiaTuristico::userid");
-
-  useEffect(() => {
-    if (userId !== null) getFavorites(userId);
-    //eslint-disable-next-line
-  }, [userId]);
+  const { favorites } = useContext(AuthContext);
 
   const favoritelist = favorites?.map((favorite) => {
     return (
@@ -23,20 +17,7 @@ const FavoritesList: React.FC = () => {
     );
   });
 
-  return (
-    <div className="FavoritesList">
-      {loading ? (
-        <Loading
-          type={"spin"}
-          height={"30px"}
-          width={"30px"}
-          color={"#5434af"}
-        />
-      ) : (
-        favorites && favoritelist
-      )}
-    </div>
-  );
+  return <div className="FavoritesList">{favoritelist}</div>;
 };
 
 export default FavoritesList;

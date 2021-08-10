@@ -97,8 +97,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       }
     } catch (error) {
       setLoading(false);
-      //setFavorites([]);
-      //faz nada
     }
   };
 
@@ -108,10 +106,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       const response = await api.post(`/users/favorites/`, { userId, poiId });
       if (response.status === 201) {
         setLoading(false);
-        if (favorites) {
-          console.log(response.data)
-          setFavorites([...favorites, response.data]);
-        }
+        getFavorites(userId);
       }
     } catch (error) {
       console.log(error.response);
@@ -128,15 +123,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       });
       if (response.status === 200) {
         setLoading(false);
-        console.log("removeFavorito");
-        console.log(response);
-        if (favorites) {
-          let filtredFav = favorites.filter(
-            (favorite) => favorite.poiId !== poiId
-          );
-          setFavorites(filtredFav);
-          console.log(filtredFav);
-        }
+        getFavorites(userId);
       }
     } catch (error) {
       setLoading(false);

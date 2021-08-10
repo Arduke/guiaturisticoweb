@@ -23,7 +23,10 @@ const FavoriteCard: React.FC<{ favorite: Favorites }> = ({ favorite }) => {
           <Link to={`details/${favorite.poi.id}`}>
             <CardMedia
               className="FavoritePicture"
-              image={`${favorite.poi.picture}`}
+              image={
+                favorite.poi.picture ||
+                "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/3136/image-not-found.jpg"
+              }
             />
           </Link>
           <Typography
