@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 import Menu from "../../components/Menu";
-import FavoriteList from "../../components/ProfileCard/FavoritesList";
+import FavoritesList from "../../components/UserProfile/FavoritesList";
+import ProfileCard from "../../components/UserProfile/ProfileCard";
+
+import "./styles.css";
 
 const UserProfile: React.FC = () => {
   return (
-    <div className="Favorites">
+    <div className="UserPage">
       <Menu />
-      <FavoriteList></FavoriteList>
+      <div>
+        <ProfileCard />
+      </div>
+      <div>
+        <FavoritesList />
+      </div>
     </div>
   );
 };

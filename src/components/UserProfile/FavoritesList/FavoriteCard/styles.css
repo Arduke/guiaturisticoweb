@@ -1,0 +1,45 @@
+.FavoriteCard {
+  margin: 5px;
+  height: 300px;
+  width: 300px;
+}
+
+.FavoriteTitle {
+  display: flex;
+  justify-self: left;
+}
+
+div .MuiCardContent-root {
+  height: 200px;
+}
+
+.MuiTypography-h5 {
+  max-width: 268px;
+  overflow: hidden;
+}
+
+.FavoritePicture {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  height: 92px;
+  width: 268px;
+}
+
+.FavoriteTypo {
+  display: flex;
+  align-content: center;
+  overflow: hidden;
+  padding: 16px;
+  height: 92px;
+  width: 268px;
+}
+
+.FavoriteIcon {
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  height: 36px;
+  padding: 8px;
+  color: red;
+}

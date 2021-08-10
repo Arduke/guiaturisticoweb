@@ -1,12 +1,13 @@
-import { IPoi } from "../poi/IPoi";
-import { IUserDto } from "../user/IUser";
+import { Favorites, IUser, IUserDto } from "../user/IUser";
 
 export interface IAuthContextData {
   signed: boolean;
   user: string | null;
   loading: Boolean;
   alert: string;
-  favorites: IPoi[] | null;
+  favorites: Favorites[] | null;
+  userInfo: IUser | null;
+  getUserInfo(userId: string): Promise<void>;
   setAlert(text: string): any;
   Login(email: string, password: string, callback: Function): Promise<void>;
   Logout(): Promise<void>;

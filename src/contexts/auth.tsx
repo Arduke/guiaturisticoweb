@@ -2,8 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 import api from "../services/api";
 import { IAuthContextData } from "../interface/context/IAuthContextData";
-import { IUserDto } from "../interface/user/IUser";
-import { IPoi } from "../interface/poi/IPoi";
+import { Favorites, IUser, IUserDto } from "../interface/user/IUser";
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData);
 
@@ -11,7 +10,8 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<string | null>(null);
   const [loading, setLoading] = useState<Boolean>(false);
   const [alert, setAlert] = useState<string>("");
-  const [favorites, setFavorites] = useState<IPoi[] | null>(null);
+  const [favorites, setFavorites] = useState<Favorites[] | null>(null);
+  const [userInfo, setUserInfo] = useState<IUser | null>(null);
 
   useEffect(() => {
     const storagedUser = localStorage.getItem("@GuiaTuristico::user");
@@ -84,7 +84,10 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const getFavorites = async (userId: string) => {
     try {
-      const response = await api.get(`/users/favorites/${userId}`);
+      const token = localStorage.getItem("@GuiaTuristico::token");
+      const response = await api.get(`/users/favorites/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       if (response.status === 200) {
         setFavorites(response.data);
       }
@@ -123,6 +126,23 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   };
 
+  const getUserInfo = async (userId: string) => {
+    try {
+      const token = localStorage.getItem("@GuiaTuristico::token");
+      setLoading(true);
+      const response = await api.get(`/users/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.status === 200) {
+        setLoading(false);
+        setUserInfo(response.data as IUser);
+      }
+    } catch (error) {
+      setLoading(false);
+      setAlert(error.response.data.message);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -131,7 +151,9 @@ export const AuthProvider: React.FC = ({ children }) => {
         loading,
         alert,
         favorites,
+        userInfo,
         setAlert,
+        getUserInfo,
         Login,
         Logout,
         Register,

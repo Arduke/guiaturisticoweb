@@ -1,7 +1,6 @@
 :root {
   --color-primary: #5434af;
   --color-secondary: #adacaf;
-  background: linear-gradient(rgb(240, 240, 255), rgb(160, 160, 255));
 }
 
 .container_details {
