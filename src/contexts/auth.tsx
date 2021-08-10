@@ -32,6 +32,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       });
 
       if (response.status === 201) {
+        console.log(response.data);
         localStorage.setItem("@GuiaTuristico::user", response.data.email);
         localStorage.setItem(
           "@GuiaTuristico::token",
@@ -57,6 +58,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     localStorage.removeItem("@GuiaTuristico::token");
     localStorage.removeItem("@GuiaTuristico::user");
     localStorage.removeItem("@GuiaTuristico::userid");
+    setUserInfo(null);
   };
 
   const Register = async (user: IUserDto, callback: Function) => {
@@ -84,14 +86,18 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const getFavorites = async (userId: string) => {
     try {
+      setLoading(true);
       const token = localStorage.getItem("@GuiaTuristico::token");
       const response = await api.get(`/users/favorites/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (response.status === 200) {
         setFavorites(response.data);
+        setLoading(false);
       }
     } catch (error) {
+      setLoading(false);
+      //setFavorites([]);
       //faz nada
     }
   };
@@ -99,12 +105,16 @@ export const AuthProvider: React.FC = ({ children }) => {
   const addFavorite = async (userId: string, poiId: string) => {
     try {
       setLoading(true);
-      const response = await api.post(`/users/favorites/${userId}`, poiId);
+      const response = await api.post(`/users/favorites/`, { userId, poiId });
       if (response.status === 201) {
         setLoading(false);
-        setFavorites(response.data);
+        if (favorites) {
+          console.log(response.data)
+          setFavorites([...favorites, response.data]);
+        }
       }
     } catch (error) {
+      console.log(error.response);
       setLoading(false);
       setAlert(error.response.data.message);
     }
@@ -113,12 +123,20 @@ export const AuthProvider: React.FC = ({ children }) => {
   const removeFavorite = async (userId: string, poiId: string) => {
     try {
       setLoading(true);
-      const response = await api.delete(`/users/favorites/${userId}`, {
-        data: { poiId },
+      const response = await api.delete(`/users/favorites/`, {
+        data: { userId, poiId },
       });
       if (response.status === 200) {
         setLoading(false);
-        setFavorites(response.data);
+        console.log("removeFavorito");
+        console.log(response);
+        if (favorites) {
+          let filtredFav = favorites.filter(
+            (favorite) => favorite.poiId !== poiId
+          );
+          setFavorites(filtredFav);
+          console.log(filtredFav);
+        }
       }
     } catch (error) {
       setLoading(false);

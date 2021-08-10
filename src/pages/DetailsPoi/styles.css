@@ -29,6 +29,10 @@
   color: var(--color-secondary);
 }
 
+.card_content_name_agency_details_poi {
+  height: 100px !important;
+}
+
 .card_content_name_agency_details_poi p {
   font-size: 1rem;
   padding: 2px;

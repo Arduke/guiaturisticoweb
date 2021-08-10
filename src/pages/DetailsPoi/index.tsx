@@ -13,7 +13,13 @@ import {
   CardContent,
   Typography,
 } from "@material-ui/core";
-import { LocationOn, Forum, Room } from "@material-ui/icons/";
+import {
+  LocationOn,
+  Forum,
+  Room,
+  Favorite,
+  FavoriteBorder,
+} from "@material-ui/icons/";
 
 import Menu from "../../components/Menu";
 import CommentaryList from "../../components/Commentary/CommentaryList";
@@ -31,14 +37,62 @@ const AgulhaComponent: React.FC<any> = ({ text }) => (
 const DetailsPoi: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { poi, agencyName, fetchPoiById } = useContext(PoiContext);
-  const { user } = useContext(AuthContext);
+  const { user, getFavorites, favorites, addFavorite, removeFavorite } =
+    useContext(AuthContext);
 
   const idUser = localStorage.getItem("@GuiaTuristico::userid");
 
   useEffect(() => {
     fetchPoiById(id);
+    if (idUser) {
+      getFavorites(idUser);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(favorites);
+
+  const handlerFavorite = () => {
+    let exist: boolean = false;
+
+    if (favorites && poi) {
+      favorites.forEach((favorite) => {
+        if (favorite.poiId === poi.id) {
+          exist = true;
+        }
+      });
+    }
+
+    return (
+      <div>
+        {exist ? (
+          <IconButton
+            onClick={() => {
+              if (idUser) {
+                console.log("remove");
+                removeFavorite(idUser, id);
+              }
+            }}
+            style={{ padding: "20px", margin: "10px" }}
+          >
+            <Favorite style={{ color: "red" }} />
+          </IconButton>
+        ) : (
+          <IconButton
+            onClick={() => {
+              if (idUser) {
+                console.log("add");
+                addFavorite(idUser, id);
+              }
+            }}
+            style={{ padding: "20px", margin: "10px" }}
+          >
+            <FavoriteBorder style={{ color: "red" }} />
+          </IconButton>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="container_details ">
@@ -55,6 +109,7 @@ const DetailsPoi: React.FC = () => {
             title={poi?.name || ""}
             subheader={poi?.createdAt || ""}
           />
+          {handlerFavorite()}
           <CardContent className="card_content_name_agency_details_poi">
             <Typography className="name_agency_details_poi">
               {agencyName?.name || ""}
@@ -70,7 +125,7 @@ const DetailsPoi: React.FC = () => {
             </Typography>
           </CardContent>
         </Grid>
-        <CardContent>
+        <CardContent style={{ height: "100px" }}>
           <Grid
             container
             direction="row"

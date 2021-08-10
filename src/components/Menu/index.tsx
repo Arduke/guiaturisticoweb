@@ -1,19 +1,27 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Button} from '@material-ui/core';
-import { ExitToApp} from "@material-ui/icons"
+import React, { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@material-ui/core";
+import { ExitToApp } from "@material-ui/icons";
 
-import "./styles.css"
-import AuthContext from '../../contexts/auth';
-import SearchComponent from '../SearchComponent';
+import "./styles.css";
+import AuthContext from "../../contexts/auth";
+import SearchComponent from "../SearchComponent";
 
 function Menu() {
-  const { signed, Logout } = useContext(AuthContext);
+  const { signed, Logout, userInfo, getUserInfo } = useContext(AuthContext);
+
+  const userId = localStorage.getItem("@GuiaTuristico::userid");
 
   const handlelogout = () => {
-    Logout()
-  }
+    Logout();
+  };
 
+  useEffect(() => {
+    if (userId) {
+      getUserInfo(userId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <nav>
@@ -23,18 +31,37 @@ function Menu() {
       </label>
       <label className="logo">Guia Turístico</label>
       <ul className="ulMenu">
-        <li> <Link className="link" to="/"> Home </Link> </li>
-        {
-          signed ?
-            <li><Button onClick={handlelogout}><ExitToApp style={{ color: "white" }}></ExitToApp></Button></li>
-            : <li> <Link className="link" to="/login"> Login </Link> </li>
-        }
+        {userInfo !== null && (
+          <li>
+            <Link className="link" to="/profile">
+              Perfil
+            </Link>
+          </li>
+        )}
         <li>
-          <SearchComponent/>
+          <Link className="link" to="/">
+            Home
+          </Link>
+        </li>
+        {signed ? (
+          <li>
+            <Button onClick={handlelogout}>
+              <ExitToApp style={{ color: "white" }}></ExitToApp>
+            </Button>
+          </li>
+        ) : (
+          <li>
+            <Link className="link" to="/login">
+              Login
+            </Link>
+          </li>
+        )}
+        <li>
+          <SearchComponent />
         </li>
       </ul>
     </nav>
-  )
+  );
 }
 
 export default Menu;
