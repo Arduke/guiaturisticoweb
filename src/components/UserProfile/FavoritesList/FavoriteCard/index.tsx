@@ -16,19 +16,17 @@ import { Favorites } from "../../../../interface/user/IUser";
 
 const FavoriteCard: React.FC<{ favorite: Favorites }> = ({ favorite }) => {
   return (
-    <div className="FavoriteCard">
+    <Link to={`details/${favorite.poi.id}`}>
       <Card className="FavoriteCard">
         <CardHeader title={favorite.poi.name} className="FavoriteTitle" />
         <CardContent>
-          <Link to={`details/${favorite.poi.id}`}>
-            <CardMedia
-              className="FavoritePicture"
-              image={
-                favorite.poi.picture ||
-                "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/3136/image-not-found.jpg"
-              }
-            />
-          </Link>
+          <CardMedia
+            className="FavoritePicture"
+            image={
+              favorite.poi.picture ||
+              "https://cdn.neemo.com.br/uploads/settings_webdelivery/logo/3136/image-not-found.jpg"
+            }
+          />
           <Typography
             className="FavoriteTypo"
             variant="body2"
@@ -42,7 +40,7 @@ const FavoriteCard: React.FC<{ favorite: Favorites }> = ({ favorite }) => {
           <Favorite />
         </div>
       </Card>
-    </div>
+    </Link>
   );
 };
 export default FavoriteCard;
