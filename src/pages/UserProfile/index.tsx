@@ -10,23 +10,33 @@ import "./styles.css";
 
 const UserProfile: React.FC = () => {
   const { getFavorites } = useContext(AuthContext);
-  const userId = localStorage.getItem("@GuiaTuristico::userId");
+  const userId = localStorage.getItem("@GuiaTuristico::userid");
 
   useEffect(() => {
     if (userId !== null) {
       getFavorites(userId);
     }
-  });
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div className="UserPage">
       <Menu />
+      <div className="ListTitle">
+        <h1>Minhas informações</h1>
+        <br />
+      </div>
       <ProfileCard />
       <div className="ListTitle">
         <h1>Meus favoritos</h1>
         <br />
       </div>
       <FavoritesList />
+      <div className="footerDashboard">
+        <h4>Todos os direitos reservados @2021 </h4>
+        <br />
+        Carlos Eduardo Martis Filho, Isabela Rocha Silveira, Danilo Barberini
+      </div>
     </div>
   );
 };

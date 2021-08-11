@@ -1,93 +1,101 @@
 nav {
-	background: #5434af;
-	height: 80px;
-	width: 100%;
-	justify-content: space-between;
-	flex-direction: row;
+  background: #5434af;
+  height: 80px;
+  width: 100%;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.MenuStyle {
+  justify-content: none;
+  align-items: none;
+  text-align: left;
 }
 
 label.logo {
-	color: white;
-	line-height: 80px;
-	font-weight: bold;
-	font-size: 30px;
-	padding-left: 50px;
-	white-space: nowrap
+  color: white;
+  line-height: 80px;
+  font-weight: bold;
+  font-size: 30px;
+  padding-left: 50px;
+  white-space: nowrap;
 }
 
 nav ul {
-	z-index: 15;
-	float: right;
-	margin-right: 200px;
+  z-index: 15;
+  float: right;
+  margin-right: 200px;
 }
 
 nav ul li {
-	display: inline-block;
-	line-height: 80px;
-	margin: 0 5px;
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
 }
 
 nav ul li .link {
-	color: white;
-	font-size: 16px;
-	padding: 7px 13px;
-	border-radius: 3px;
-	text-transform: uppercase;
+  color: white;
+  font-size: 16px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
 }
 
-nav ul li .link.active, nav ul li .link:hover {
-	background: #1d075f;
-	transition: .5s;
+nav ul li .link.active,
+nav ul li .link:hover {
+  background: #1d075f;
+  transition: 0.5s;
 }
 
 .checkbtn {
-	font-size: 30px;
-	color: white;
-	float: right;
-	line-height: 80px;
-	margin-right: 40px;
-	cursor: pointer;
-	display: none;
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
 }
 
 #check {
-	display: none;
+  display: none;
 }
 
 @media (max-width: 900px) {
-	.checkbtn {
-		display: block;
-	}
-	label.logo {
-		color: white;
-		white-space: nowrap;
-		font-size: 17px;
-		line-height: 80px;
-		font-weight: bold;
-	}
-	nav ul {
-		position: fixed;
-		width: 100%;
-		height: 100vh;
-		background: #1d075f;
-		top: 80px;
-		left: -100%;
-		text-align: center;
-		transition: all .5s;
-	}
-	nav ul li {
-		display: block;
-		margin: 50px 0;
-		line-height: 30px;
-	}
-	nav ul li .link {
-		font-size: 20px;
-	}
-	a:hover, .link.active {
-		background: none;
-		color: #5434af;
-	}
-	#check:checked~ul {
-		left: 0;
-	}
+  .checkbtn {
+    display: block;
+  }
+  label.logo {
+    color: white;
+    white-space: nowrap;
+    font-size: 17px;
+    line-height: 80px;
+    font-weight: bold;
+  }
+  nav ul {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #1d075f;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all 0.5s;
+  }
+  nav ul li {
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li .link {
+    font-size: 20px;
+  }
+  a:hover,
+  .link.active {
+    background: none;
+    color: #5434af;
+  }
+  #check:checked ~ ul {
+    left: 0;
+  }
 }

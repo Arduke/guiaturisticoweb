@@ -20,15 +20,20 @@ const Dashboard: React.FC = () => {
 
   return (
     <div className="Dashboard">
-      <Menu/>
-      {(pois.length !== 0 && poisCarousel.length !== 0) ? (
+      <Menu />
+      {pois.length !== 0 && poisCarousel.length !== 0 ? (
         <div>
           <ImageSlider pois={poisCarousel.slice(0, 5)} />
           <h2 className="titleDashboard">
             CONHEÇA LUGARES NO MUNDO EM UM CLICK!
           </h2>
           <ImageList pois={pois} />
-          <div className="footerDashboard">todos os direitos reservados</div>
+          <div className="footerDashboard">
+            <h4>Todos os direitos reservados @2021 </h4>
+            <br />
+            Carlos Eduardo Martis Filho, Isabela Rocha Silveira, Danilo
+            Barberini
+          </div>
         </div>
       ) : (
         <div className="notFoundDashboard">

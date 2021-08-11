@@ -24,13 +24,18 @@ function Menu() {
   }, []);
 
   return (
-    <nav>
+    <nav className="MenuStyle">
       <input type="checkbox" id="check" />
       <label htmlFor="check" className="checkbtn">
         <i className="fas fa-bars"></i>
       </label>
       <label className="logo">Guia Turístico</label>
       <ul className="ulMenu">
+        <li>
+          <Link className="link" to="/">
+            Home
+          </Link>
+        </li>
         {userInfo !== null && (
           <li>
             <Link className="link" to="/profile">
@@ -38,11 +43,6 @@ function Menu() {
             </Link>
           </li>
         )}
-        <li>
-          <Link className="link" to="/">
-            Home
-          </Link>
-        </li>
         {signed ? (
           <li>
             <Button onClick={handlelogout}>

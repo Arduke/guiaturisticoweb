@@ -32,8 +32,6 @@ export const ChatProvider: React.FC = ({ children }) => {
 
     socket.on("received_message", (data: IMessage) => {
       setMessages((prevState) => [...prevState, data]);
-      console.log("RECEIVED-MESSAGE");
-      console.log(data);
     });
 
     socket.on(
@@ -41,8 +39,6 @@ export const ChatProvider: React.FC = ({ children }) => {
       (data: { roomId: string; messages: IMessage[] }) => {
         setMessages(data.messages);
         setRoomId(data.roomId);
-        console.log("JOINED");
-        console.log(data);
       }
     );
   }, []);
@@ -72,7 +68,6 @@ export const ChatProvider: React.FC = ({ children }) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error.response);
         setLoading(false);
       });
 
@@ -83,7 +78,6 @@ export const ChatProvider: React.FC = ({ children }) => {
     //   content: message,
     // });
     // setLoading(false);
-    console.log("SEND IMAGE CHAT");
   };
 
   const sendMessage = (author: string, roomId: string, message: string) => {
@@ -92,13 +86,10 @@ export const ChatProvider: React.FC = ({ children }) => {
       author: author,
       content: message,
     });
-    console.log(message);
-    console.log("SEND-MESSAGE");
   };
 
   const join = (agencyId: string, userId: string) => {
     socket.emit("join", { agencyId: agencyId, userId: userId });
-    console.log("JOIN");
   };
 
   return (

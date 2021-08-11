@@ -17,3 +17,10 @@
   width: 80vw;
   height: 50vh;
 }
+
+.footerDashboard {
+  padding: 10px;
+  margin-top: 10px;
+  color: white;
+  background-color: #5434af;
+}

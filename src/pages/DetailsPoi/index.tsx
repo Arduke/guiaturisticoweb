@@ -50,8 +50,6 @@ const DetailsPoi: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(favorites);
-
   const handlerFavorite = () => {
     let exist: boolean = false;
 
@@ -69,7 +67,6 @@ const DetailsPoi: React.FC = () => {
           <IconButton
             onClick={() => {
               if (idUser) {
-                console.log("remove");
                 removeFavorite(idUser, id);
               }
             }}
@@ -81,7 +78,6 @@ const DetailsPoi: React.FC = () => {
           <IconButton
             onClick={() => {
               if (idUser) {
-                console.log("add");
                 addFavorite(idUser, id);
               }
             }}

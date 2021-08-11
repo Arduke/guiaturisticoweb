@@ -32,7 +32,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       });
 
       if (response.status === 201) {
-        console.log(response.data);
         localStorage.setItem("@GuiaTuristico::user", response.data.email);
         localStorage.setItem(
           "@GuiaTuristico::token",
@@ -109,7 +108,6 @@ export const AuthProvider: React.FC = ({ children }) => {
         getFavorites(userId);
       }
     } catch (error) {
-      console.log(error.response);
       setLoading(false);
       setAlert(error.response.data.message);
     }
