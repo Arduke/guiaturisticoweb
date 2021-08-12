@@ -130,7 +130,17 @@ const DetailsPoi: React.FC = () => {
           >
             <div>
               {poi?.categories.map((categorie: ICategory) => {
-                return <Chip key={categorie.id} label={categorie.name}></Chip>;
+                return (
+                  <Chip
+                    style={{
+                      color: "white",
+                      backgroundColor: "#5626da",
+                      margin: "5px",
+                    }}
+                    key={categorie.id}
+                    label={categorie.name}
+                  ></Chip>
+                );
               })}
             </div>
           </Grid>
@@ -143,7 +153,7 @@ const DetailsPoi: React.FC = () => {
           }
           title={poi?.name || ""}
         />
-        <CardContent>
+        <CardContent style={{maxHeight: '130px'}}>
           <Typography variant="body2" component="p">
             {poi?.description}
           </Typography>
@@ -153,11 +163,11 @@ const DetailsPoi: React.FC = () => {
             direction="row"
             justifyContent="flex-start"
             alignItems="center"
+            
           >
             <LocationOn className="icon_location" fontSize="small" />
             <Typography
               className="address_details_poi"
-              variant="body2"
               color="textSecondary"
               component="p"
             >
@@ -177,7 +187,7 @@ const DetailsPoi: React.FC = () => {
                   lat: Number(poi.lat),
                   lng: Number(poi.lng),
                 }}
-                defaultZoom={15}
+                defaultZoom={17}
               >
                 <AgulhaComponent
                   lat={Number(poi.lat)}

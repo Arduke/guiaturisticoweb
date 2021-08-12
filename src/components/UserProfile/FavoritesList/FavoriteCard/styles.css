@@ -2,6 +2,11 @@
   margin: 20px;
   height: 300px;
   width: 300px;
+  border: 2px solid white;
+}
+
+.FavoriteCard:hover {
+  border: 2px #6c42dd solid;
 }
 
 .FavoriteTitle {

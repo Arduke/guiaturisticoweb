@@ -29,6 +29,8 @@ const ChatComponent: React.FC = () => {
   const onUpload = (file: any) => {
     const data = new FormData();
     data.append("file", file[0]);
+    console.log(file);
+
     // const buf = Buffer.from(file[0], 'base64');
     // buf.toString('base64');
     // var reader = new FileReader();
@@ -44,7 +46,7 @@ const ChatComponent: React.FC = () => {
     // };
 
     if (user) {
-      sendImage(data, user, roomId, message);
+      //sendImage(data, user, roomId, message);
     }
     setMessage("");
   };
@@ -131,7 +133,10 @@ const ChatComponent: React.FC = () => {
               />
             ) : (
               <div className="iconUpload">
-                <Dropzone accept="image/png" onDropAccepted={onUpload}>
+                <Dropzone
+                  accept="image/png, video/mp4"
+                  onDropAccepted={onUpload}
+                >
                   {({ getRootProps, getInputProps }) => (
                     <div {...getRootProps()}>
                       <IconButton style={{ padding: "8px !important" }}>

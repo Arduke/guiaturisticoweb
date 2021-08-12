@@ -21,12 +21,22 @@ div .MuiTypography-h5 {
   overflow: hidden;
 }
 
-.CardAvatar {
-  display: flex;
-  border-radius: 50%;
+.DivCardAvatar {
+  align-items: center;
+  display: flex !important;
   justify-content: center;
-  align-content: center;
-  margin-left: 92px;
+  cursor: pointer;
+}
+
+.imageUpload {
+  position: relative;
+  margin: 0px;
+  padding: 1px;
+}
+
+.CardAvatar {
+  margin-right: 0px;
+  border-radius: 50%;
   padding: 2px;
   height: 102px;
   width: 102px;
