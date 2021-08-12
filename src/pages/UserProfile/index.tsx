@@ -35,7 +35,7 @@ const UserProfile: React.FC = () => {
       <div className="footerDashboard">
         <h4>Todos os direitos reservados @2021 </h4>
         <br />
-        Carlos Eduardo Martis Filho, Isabela Rocha Silveira, Danilo Barberini
+        Carlos Eduardo Martins Filho, Isabela Rocha Silveira, Danilo Barberini
       </div>
     </div>
   );
