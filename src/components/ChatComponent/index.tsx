@@ -13,7 +13,7 @@ import { ArrowBackIos, Send, Image } from "@material-ui/icons";
 
 const ChatComponent: React.FC = () => {
   const [message, setMessage] = useState<string>("");
-  const { sendMessage, messages, join, roomId, sendImage, loading } =
+  const { sendMessage, messages, join, roomId, loading } =
     useContext(ChatContext);
   const { user } = useContext(AuthContext);
   const { agencyName } = useContext(PoiContext);
@@ -134,7 +134,7 @@ const ChatComponent: React.FC = () => {
             ) : (
               <div className="iconUpload">
                 <Dropzone
-                  accept="image/png, video/mp4"
+                  accept="image/png, image/jpeg, image/gif, video/mpeg, video/x-msvideo, video/mp4, video/webm"
                   onDropAccepted={onUpload}
                 >
                   {({ getRootProps, getInputProps }) => (

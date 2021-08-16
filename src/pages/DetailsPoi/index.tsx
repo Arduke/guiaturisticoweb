@@ -153,7 +153,7 @@ const DetailsPoi: React.FC = () => {
           }
           title={poi?.name || ""}
         />
-        <CardContent style={{maxHeight: '130px'}}>
+        <CardContent style={{ maxHeight: "130px" }}>
           <Typography variant="body2" component="p">
             {poi?.description}
           </Typography>
@@ -163,7 +163,6 @@ const DetailsPoi: React.FC = () => {
             direction="row"
             justifyContent="flex-start"
             alignItems="center"
-            
           >
             <LocationOn className="icon_location" fontSize="small" />
             <Typography
@@ -180,14 +179,16 @@ const DetailsPoi: React.FC = () => {
           {poi !== null ? (
             <div className="mapGoogle">
               <GoogleMapReact
+                shouldUnregisterMapOnUnmount={true}
                 bootstrapURLKeys={{
                   key: "AIzaSyCTBSgVbSHEIMoxutFSSUXC4DNEg3SfCC8",
                 }}
-                defaultCenter={{
+                center={{
                   lat: Number(poi.lat),
                   lng: Number(poi.lng),
                 }}
-                defaultZoom={17}
+                defaultZoom={10}
+                yesIWantToUseGoogleMapApiInternals={true}
               >
                 <AgulhaComponent
                   lat={Number(poi.lat)}

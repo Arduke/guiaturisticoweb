@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import Dropzone from "react-dropzone";
-import { IconButton } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
 
 import {
   Card,
