@@ -32,7 +32,7 @@ const ChatComponent: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (!tempUser) {
+    if (!tempUser && !idUser) {
       history.goBack();
     }
     if (idUser === "000" && tempUser) {
@@ -68,7 +68,7 @@ const ChatComponent: React.FC = () => {
     // };
 
     if (user) {
-      //sendImage(data, user, roomId, message);
+      sendImage(data, user, roomId, message);
     }
     setMessage("");
   };
@@ -128,11 +128,20 @@ const ChatComponent: React.FC = () => {
                     >
                       <p className="pMessage">{message.content}</p>
                       {message.picture ? (
-                        <img
-                          alt={message.picture}
-                          style={{ width: "200px", height: "200px" }}
-                          src={message.picture}
-                        />
+                        !message.picture.includes("video") ? (
+                          <img
+                            alt={message.picture}
+                            style={{ width: "200px", height: "200px" }}
+                            src={message.picture}
+                          />
+                        ) : (
+                          <video width="320" height="240" controls>
+                            <source
+                              src={message.picture}
+                              type="video/mp4"
+                            ></source>
+                          </video>
+                        )
                       ) : (
                         <> {} </>
                       )}
