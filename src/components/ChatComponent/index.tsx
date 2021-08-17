@@ -10,11 +10,21 @@ import AuthContext from "../../contexts/auth";
 import { IMessage } from "../../interface/message/IMessage";
 import PoiContext from "../../contexts/poi";
 import { ArrowBackIos, Send, Image } from "@material-ui/icons";
+import socket from "../../services/socket";
 
 const ChatComponent: React.FC = () => {
   const [message, setMessage] = useState<string>("");
-  const { sendMessage, messages, join, roomId, sendImage, loading } =
-    useContext(ChatContext);
+  const {
+    sendMessage,
+    messages,
+    join,
+    roomId,
+    sendImage,
+    loading,
+    joinTemp,
+    sendMessageTemp,
+    tempUser,
+  } = useContext(ChatContext);
   const { user } = useContext(AuthContext);
   const { agencyName } = useContext(PoiContext);
   const { idAgency, idUser } = useParams<any>();
@@ -22,7 +32,19 @@ const ChatComponent: React.FC = () => {
   const history = useHistory();
 
   useEffect(() => {
-    join(idAgency, idUser);
+    if (!tempUser) {
+      history.goBack();
+    }
+    if (idUser === "000" && tempUser) {
+      console.log("USER TEMP LOGANDO");
+      joinTemp(idAgency, tempUser.name, tempUser.phone, tempUser.email);
+    } else {
+      join(idAgency, idUser);
+    }
+    return () => {
+      console.log("TA CLEAN", roomId);
+      socket.emit("__temp_cleanup", roomId);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idUser, idAgency]);
 
@@ -55,6 +77,10 @@ const ChatComponent: React.FC = () => {
     event.preventDefault();
     if (user) {
       sendMessage(user, roomId, message);
+      setMessage("");
+    }
+    if (idUser === "000" && tempUser) {
+      sendMessageTemp(tempUser.name, roomId, message);
       setMessage("");
     }
   };
