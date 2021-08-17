@@ -1,9 +1,10 @@
-import React, { createContext /*useContext*/ } from "react";
+import React, { createContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
 import socket from "../services/socket";
 import { IMessage } from "../interface/message/IMessage";
+import { ITempUser } from "../interface/user/ITempUser";
 import api from "../services/api";
 
 interface ChatContextData {
@@ -11,12 +12,16 @@ interface ChatContextData {
   loading: boolean;
   setMessages(messages: IMessage[]): any;
   sendMessage(autor: string, room: string, message: string): any;
+  sendMessageTemp(author: string, roomId: string, message: string): any;
   sendImage(file: any, author: string, roomId: string, message: string): any;
   display: boolean;
   setDisplay(boolean: boolean): void;
   roomId: string;
   setRoomId(string: string): void;
   join(agencyId: string, userId: string): any;
+  joinTemp(agencyId: string, name: string, phone: string, email: string): any;
+  tempUser: ITempUser | null;
+  setTempUser(user: ITempUser): void;
 }
 
 const ChatContext = createContext<ChatContextData>({} as ChatContextData);
@@ -26,6 +31,7 @@ export const ChatProvider: React.FC = ({ children }) => {
   const [display, setDisplay] = useState<boolean>(false);
   const [roomId, setRoomId] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [tempUser, setTempUser] = useState<ITempUser | null>(null);
 
   useEffect(() => {
     socket.connect();
@@ -70,14 +76,6 @@ export const ChatProvider: React.FC = ({ children }) => {
       .catch((error) => {
         setLoading(false);
       });
-
-    // socket.emit("send_image", {
-    //   picture: newFile,
-    //   author: author,
-    //   roomId: roomId,
-    //   content: message,
-    // });
-    // setLoading(false);
   };
 
   const sendMessage = (author: string, roomId: string, message: string) => {
@@ -88,8 +86,32 @@ export const ChatProvider: React.FC = ({ children }) => {
     });
   };
 
+  const sendMessageTemp = (author: string, roomId: string, message: string) => {
+    console.log("SEND MESSAGE TEMP")
+    socket.emit("__temp_send_message", {
+      roomId: roomId,
+      author: author,
+      content: message,
+    });
+  };
+
   const join = (agencyId: string, userId: string) => {
     socket.emit("join", { agencyId: agencyId, userId: userId });
+  };
+
+  const joinTemp = (
+    agencyId: string,
+    name: string,
+    phone: string,
+    email: string
+  ) => {
+    console.log("JOINED");
+    socket.emit("__temp_join", {
+      agencyId: agencyId,
+      name: name,
+      phone: phone,
+      email: email,
+    });
   };
 
   return (
@@ -105,6 +127,10 @@ export const ChatProvider: React.FC = ({ children }) => {
         roomId,
         setRoomId,
         join,
+        joinTemp,
+        sendMessageTemp,
+        tempUser,
+        setTempUser,
       }}
     >
       {children}
