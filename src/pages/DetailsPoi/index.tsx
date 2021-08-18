@@ -336,14 +336,15 @@ const DetailsPoi: React.FC = () => {
             {poi !== null ? (
               <div className="mapGoogle">
                 <GoogleMapReact
+                  shouldUnregisterMapOnUnmount={true}
                   bootstrapURLKeys={{
                     key: "AIzaSyCTBSgVbSHEIMoxutFSSUXC4DNEg3SfCC8",
                   }}
-                  defaultCenter={{
+                  center={{
                     lat: Number(poi.lat),
                     lng: Number(poi.lng),
                   }}
-                  defaultZoom={17}
+                  zoom={14}
                 >
                   <AgulhaComponent
                     lat={Number(poi.lat)}
