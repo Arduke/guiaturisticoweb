@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { IconButton, Paper } from "@material-ui/core";
 import Dropzone from "react-dropzone";
@@ -41,17 +41,13 @@ const ChatComponent: React.FC = () => {
     } else {
       join(idAgency, idUser);
     }
-    return () => {
-      console.log("TA CLEAN", roomId);
-      socket.emit("__temp_cleanup", roomId);
-    };
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idUser, idAgency]);
 
   const onUpload = (file: any) => {
     const data = new FormData();
     data.append("file", file[0]);
-    console.log(file);
 
     // const buf = Buffer.from(file[0], 'base64');
     // buf.toString('base64');
@@ -68,7 +64,11 @@ const ChatComponent: React.FC = () => {
     // };
 
     if (user) {
+      console.log("Não foi");
       sendImage(data, user, roomId, message);
+    }
+    if (tempUser) {
+      sendImage(data, tempUser?.name, roomId, message);
     }
     setMessage("");
   };
@@ -87,7 +87,12 @@ const ChatComponent: React.FC = () => {
 
   return (
     <>
-      <div onClick={() => history.goBack()}>
+      <div
+        onClick={() => {
+          socket.emit("__temp_cleanup", roomId);
+          history.goBack();
+        }}
+      >
         <IconButton
           style={{ position: "absolute", margin: "20px" }}
           aria-label="delete"
