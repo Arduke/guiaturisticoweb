@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import GoogleMapReact from "google-map-react";
+
 import "./styles.css";
 import {
   Chip,
@@ -30,12 +30,7 @@ import AuthContext from "../../contexts/auth";
 import { ICategory } from "../../interface/category/ICategory";
 import ChatContext from "../../contexts/chat";
 import formatPhoneWithMask from "../../helpers/phoneMask";
-
-const AgulhaComponent: React.FC<any> = ({ text }) => (
-  <div>
-    <Room color="error">{text}</Room>
-  </div>
-);
+import MyMap from "../../components/MapComponent";
 
 interface Errors {
   userName: string;
@@ -335,23 +330,7 @@ const DetailsPoi: React.FC = () => {
           <div className="divGoogleMapNormal">
             {poi !== null ? (
               <div className="mapGoogle">
-                <GoogleMapReact
-                  shouldUnregisterMapOnUnmount={true}
-                  bootstrapURLKeys={{
-                    key: "AIzaSyCTBSgVbSHEIMoxutFSSUXC4DNEg3SfCC8",
-                  }}
-                  center={{
-                    lat: Number(poi.lat),
-                    lng: Number(poi.lng),
-                  }}
-                  zoom={14}
-                >
-                  <AgulhaComponent
-                    lat={Number(poi.lat)}
-                    lng={Number(poi.lng)}
-                    text="Marker"
-                  />
-                </GoogleMapReact>
+                {<MyMap lat={poi.lat} lng={poi.lng}></MyMap>}
               </div>
             ) : (
               <></>
