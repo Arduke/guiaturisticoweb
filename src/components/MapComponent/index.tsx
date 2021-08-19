@@ -4,6 +4,7 @@ import {
   DirectionsRenderer,
   LoadScript,
   DirectionsService,
+  Marker,
 } from "@react-google-maps/api";
 import { useEffect } from "react";
 
@@ -50,9 +51,10 @@ const MyMap: React.FC<IProps> = ({ lat, lng }) => {
       <LoadScript googleMapsApiKey="AIzaSyCTBSgVbSHEIMoxutFSSUXC4DNEg3SfCC8">
         <GoogleMap
           center={destination}
-          mapContainerStyle={{ width: "100%", height: "300px" }}
+          mapContainerStyle={{ width: "100%", height: "500px" }}
           zoom={14}
         >
+          <Marker position={destination} />
           {destination && origin !== null && (
             <DirectionsService
               options={{

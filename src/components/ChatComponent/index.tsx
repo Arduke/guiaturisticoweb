@@ -171,7 +171,7 @@ const ChatComponent: React.FC = () => {
                 width={"30px"}
                 color={"#5434af"}
               />
-            ) : (
+            ) : !tempUser ? (
               <div className="iconUpload">
                 <Dropzone
                   accept="image/png, image/jpeg, image/gif, video/mpeg, video/x-msvideo, video/mp4, video/webm"
@@ -187,6 +187,8 @@ const ChatComponent: React.FC = () => {
                   )}
                 </Dropzone>
               </div>
+            ) : (
+              <></>
             )}
           </form>
         </div>
