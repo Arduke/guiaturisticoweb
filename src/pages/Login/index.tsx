@@ -5,13 +5,14 @@ import { Alert } from "@material-ui/lab";
 import { ArrowBackIos } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 import Loading from "react-loading";
-import { GoogleLogin } from "react-google-login";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
 
 import "./styles.css";
 import AuthContext from "../../contexts/auth";
 
 const Login: React.FC = () => {
-  const { signed, loading, Login, alert, setAlert } = useContext(AuthContext);
+  const { signed, loading, Login, LoginWithGoogle, alert, setAlert } =
+    useContext(AuthContext);
   const history = useHistory();
 
   const [email, setEmail] = useState("");
@@ -40,8 +41,11 @@ const Login: React.FC = () => {
   };
 
   const OnLoginSuccess = (res: any) => {
-    console.log("Login success.", res);
-    console.log("profile", res.profileObj);
+    const { name, email, googleId, imageUrl } = res.profileObj;
+    console.log(googleId);
+    LoginWithGoogle(name, email, googleId, imageUrl, () => {
+      history.goBack();
+    });
   };
 
   const OnLoginFailure = (res: any) => {
@@ -135,11 +139,11 @@ const Login: React.FC = () => {
                 </form>
                 <div className="g-signin">
                   <GoogleLogin
+                    autoLoad={false}
                     clientId={clientId}
                     onSuccess={OnLoginSuccess}
                     onFailure={OnLoginFailure}
-                    isSignedIn={true}
-                    buttonText="Login"
+                    buttonText="Acessar com a conta do google"
                   />
                 </div>
               </>

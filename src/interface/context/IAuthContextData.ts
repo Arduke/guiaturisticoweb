@@ -10,6 +10,13 @@ export interface IAuthContextData {
   getUserInfo(userId: string): Promise<void>;
   setAlert(text: string): any;
   Login(email: string, password: string, callback: Function): Promise<void>;
+  LoginWithGoogle(
+    email: string,
+    password: string,
+    username: string,
+    picture: string,
+    callback: Function
+  ): Promise<void>;
   Logout(): Promise<void>;
   Register(user: IUserDto, callback: Function): Promise<void>;
   getFavorites(userId: string): Promise<void>;

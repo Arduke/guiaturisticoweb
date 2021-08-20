@@ -23,6 +23,45 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   }, []);
 
+  const LoginWithGoogle = async (
+    username: string,
+    email: string,
+    password: string,
+    picture: string,
+    callback: Function
+  ) => {
+    setLoading(true);
+    try {
+      const response = await api.post("/users/loginGoogle", {
+        email: email,
+        username: username,
+        password: password,
+        picture: picture,
+      });
+
+      if (response.status === 201) {
+        localStorage.setItem("@GuiaTuristico::user", response.data.email);
+        localStorage.setItem(
+          "@GuiaTuristico::token",
+          response.data.access_token
+        );
+        localStorage.setItem("@GuiaTuristico::userid", response.data.id);
+        setUser(response.data.email);
+        api.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
+        setLoading(false);
+        callback();
+      }
+      setLoading(false);
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response);
+        Logout();
+        setLoading(false);
+        setAlert(error.response.data.message);
+      }
+    }
+  };
+
   const Login = async (email: string, password: string, callback: Function) => {
     setLoading(true);
     try {
@@ -157,6 +196,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         userInfo,
         setAlert,
         getUserInfo,
+        LoginWithGoogle,
         Login,
         Logout,
         Register,
