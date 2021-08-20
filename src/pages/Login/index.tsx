@@ -19,7 +19,7 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
 
   const clientId =
-    "318977283991-llskbibnca18baf8uutm9t9gtgsooh65.apps.googleusercontent.com";
+    "318977283991-0dntiu15h9bbu1uiq7vorbkbh4p29sca.apps.googleusercontent.com";
 
   useEffect(() => {
     if (signed) {
