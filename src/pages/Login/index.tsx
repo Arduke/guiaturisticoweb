@@ -20,8 +20,6 @@ const Login = () => {
 
   const clientId = process.env.REACT_APP_GOOGLE_API_KEY;
 
-  console.log(process.env.REACT_APP_GOOGLE_API_KEY);
-
   useEffect(() => {
     if (signed) {
       history.push("/");
@@ -43,14 +41,12 @@ const Login = () => {
 
   const OnLoginSuccess = (res: any) => {
     const { name, email, googleId, imageUrl } = res.profileObj;
-    console.log(googleId);
     LoginWithGoogle(name, email, googleId, imageUrl, () => {
       history.goBack();
     });
   };
 
   const OnLoginFailure = (res: any) => {
-    console.log("Failed", res);
   };
 
   return (

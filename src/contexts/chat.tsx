@@ -65,7 +65,6 @@ export const ChatProvider: React.FC = ({ children }) => {
         },
       })
       .then((response) => {
-        console.log("imagem enviada");
         socket.emit("send_message", {
           roomId: roomId,
           author: author,
@@ -88,7 +87,6 @@ export const ChatProvider: React.FC = ({ children }) => {
   };
 
   const sendMessageTemp = (author: string, roomId: string, message: string) => {
-    console.log("SEND MESSAGE TEMP");
     socket.emit("__temp_send_message", {
       roomId: roomId,
       author: author,
@@ -106,7 +104,6 @@ export const ChatProvider: React.FC = ({ children }) => {
     phone: string,
     email: string
   ) => {
-    console.log("TEMP_JOIN");
     socket.emit("__temp_join", {
       agencyId: agencyId,
       name: name,

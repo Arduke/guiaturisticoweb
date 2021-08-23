@@ -36,7 +36,6 @@ const ChatComponent = () => {
       history.goBack();
     }
     if (idUser === "000" && tempUser) {
-      console.log("USER TEMP LOGANDO");
       joinTemp(idAgency, tempUser.name, tempUser.phone, tempUser.email);
     } else {
       join(idAgency, idUser);
@@ -54,17 +53,14 @@ const ChatComponent = () => {
     // var reader = new FileReader();
     // reader.readAsDataURL(file[0]);
     // reader.onload = function () {
-    //   console.log(reader.result);
     //   if (user) {
     //     sendImage(file[0], user, roomId, message);
     //   }
     // };
     // reader.onerror = function (error) {
-    //   console.log("Error:", error);
     // };
 
     if (user) {
-      console.log("Não foi");
       sendImage(data, user, roomId, message);
     }
     if (tempUser) {

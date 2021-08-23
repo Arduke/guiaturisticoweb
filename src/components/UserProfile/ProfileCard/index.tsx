@@ -30,10 +30,8 @@ const ProfileCard = () => {
     api
       .post(`/users/${userId}/upload`, data)
       .then((response) => {
-        console.log("FOI");
       })
       .catch((error) => {
-        console.log("NUMFOI");
       });
   };
 

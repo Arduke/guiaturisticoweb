@@ -54,7 +54,6 @@ export const AuthProvider: React.FC = ({ children }) => {
       setLoading(false);
     } catch (error) {
       if (error.response) {
-        console.log(error.response);
         Logout();
         setLoading(false);
         setAlert(error.response.data.message);
