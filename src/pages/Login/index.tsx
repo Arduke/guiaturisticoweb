@@ -5,12 +5,12 @@ import { Alert } from "@material-ui/lab";
 import { ArrowBackIos } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 import Loading from "react-loading";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 
 import "./styles.css";
 import AuthContext from "../../contexts/auth";
 
-const Login: React.FC = () => {
+const Login = () => {
   const { signed, loading, Login, LoginWithGoogle, alert, setAlert } =
     useContext(AuthContext);
   const history = useHistory();
@@ -18,8 +18,9 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const clientId =
-    "318977283991-0dntiu15h9bbu1uiq7vorbkbh4p29sca.apps.googleusercontent.com";
+  const clientId = process.env.REACT_APP_NOT_SECRET_CODE;
+
+  console.log(process.env.REACT_APP_NOT_SECRET_CODE);
 
   useEffect(() => {
     if (signed) {
@@ -138,13 +139,17 @@ const Login: React.FC = () => {
                   </Grid>
                 </form>
                 <div className="g-signin">
-                  <GoogleLogin
-                    autoLoad={false}
-                    clientId={clientId}
-                    onSuccess={OnLoginSuccess}
-                    onFailure={OnLoginFailure}
-                    buttonText="Acessar com a conta do google"
-                  />
+                  {clientId ? (
+                    <GoogleLogin
+                      autoLoad={false}
+                      clientId={clientId}
+                      onSuccess={OnLoginSuccess}
+                      onFailure={OnLoginFailure}
+                      buttonText="Acessar com o google"
+                    />
+                  ) : (
+                    <> Serviço de mapa indisponivel </>
+                  )}
                 </div>
               </>
             )}

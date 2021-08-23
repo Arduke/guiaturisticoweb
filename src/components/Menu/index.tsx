@@ -5,7 +5,7 @@ import { ExitToApp } from "@material-ui/icons";
 
 import "./styles.css";
 import AuthContext from "../../contexts/auth";
-import SearchComponent from "../SearchComponent";
+import SearchComponent from "../DashboardComponent/SearchComponent";
 
 function Menu() {
   const { signed, Logout, userInfo, getUserInfo } = useContext(AuthContext);

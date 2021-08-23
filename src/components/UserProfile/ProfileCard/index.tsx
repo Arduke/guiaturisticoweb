@@ -13,7 +13,7 @@ import "./styles.css";
 import AuthContext from "../../../contexts/auth";
 import api from "../../../services/api";
 
-const ProfileCard: React.FC = () => {
+const ProfileCard = () => {
   const { userInfo, getUserInfo } = useContext(AuthContext);
   const userId = localStorage.getItem("@GuiaTuristico::userid");
 

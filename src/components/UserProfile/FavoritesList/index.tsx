@@ -6,7 +6,7 @@ import "./styles.css";
 import { useContext } from "react";
 import AuthContext from "../../../contexts/auth";
 
-const FavoritesList: React.FC = () => {
+const FavoritesList = () => {
   const { favorites } = useContext(AuthContext);
 
   const favoritelist = favorites?.map((favorite) => {

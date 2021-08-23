@@ -4,7 +4,6 @@ import api from "../services/api";
 import { IPoiContextData } from "../interface/context/IPoiContextData";
 import { IPoi } from "../interface/poi/IPoi";
 import { IAgency } from "../interface/agency/IAgency";
-import { IUser } from "../interface/user/IUser";
 import { IComment } from "../interface/comment/IComment";
 
 const PoiContext = createContext<IPoiContextData>({} as IPoiContextData);
@@ -14,8 +13,7 @@ export const PoiProvider: React.FC = ({ children }) => {
   const [searchPois, setSearchPois] = useState<Array<IPoi> | []>([]);
   const [pois, setPois] = useState<Array<IPoi> | []>([]);
   const [poi, setPoi] = useState<IPoi | null>(null);
-  const [agencyName, setAgencyName] = useState<IAgency | null>(null);
-  const [userName /*setUserName*/] = useState<IUser | null>(null);
+  const [agency, setAgency] = useState<IAgency | null>(null);
   const [comments, setComments] = useState<IComment[] | []>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<Boolean>(false);
@@ -97,7 +95,7 @@ export const PoiProvider: React.FC = ({ children }) => {
           `/agencies/${response.data.agencyId}`
         );
 
-        setAgencyName(responseAgencyName.data);
+        setAgency(responseAgencyName.data);
 
         setLoading(false);
       }
@@ -156,8 +154,7 @@ export const PoiProvider: React.FC = ({ children }) => {
         poi,
         searchPois,
         comments,
-        userName,
-        agencyName,
+        agency,
         loading,
         alert,
         searchPoi,

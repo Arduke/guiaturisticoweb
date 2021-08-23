@@ -77,8 +77,8 @@ export const AuthProvider: React.FC = ({ children }) => {
           response.data.access_token
         );
         localStorage.setItem("@GuiaTuristico::userid", response.data.id);
-        setUser(response.data.email);
         api.defaults.headers.Authorization = `Bearer ${response.data.access_token}`;
+        setUser(response.data.email);
         setLoading(false);
         callback();
       }
@@ -92,10 +92,10 @@ export const AuthProvider: React.FC = ({ children }) => {
   };
 
   const Logout = async () => {
-    setUser(null);
     localStorage.removeItem("@GuiaTuristico::token");
     localStorage.removeItem("@GuiaTuristico::user");
     localStorage.removeItem("@GuiaTuristico::userid");
+    setUser(null);
     setUserInfo(null);
   };
 

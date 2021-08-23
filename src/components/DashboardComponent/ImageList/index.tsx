@@ -12,7 +12,7 @@ import {
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 
 import "./styles.css";
-import PoiContext from "../../contexts/poi";
+import PoiContext from "../../../contexts/poi";
 
 interface Props {
   pois: Array<any> | [{}];
@@ -79,7 +79,7 @@ const ImageList: React.FC<Props> = ({ pois }) => {
           </Button>
           <Button>Página {page}</Button>
           <Button
-            disabled={pois.length <= 5  ? true : false}
+            disabled={pois.length <= 5 ? true : false}
             variant="contained"
             color="default"
             endIcon={<ArrowForwardIos />}

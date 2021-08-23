@@ -8,7 +8,7 @@ import AuthContext from "../../contexts/auth";
 
 import "./styles.css";
 
-const UserProfile: React.FC = () => {
+const UserProfile = () => {
   const { getFavorites } = useContext(AuthContext);
   const userId = localStorage.getItem("@GuiaTuristico::userid");
 

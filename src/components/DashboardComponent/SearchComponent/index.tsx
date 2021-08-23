@@ -3,7 +3,7 @@ import { Modal, IconButton, Paper } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 
 import "./styles.css";
-import PoiContext from "../../contexts/poi";
+import PoiContext from "../../../contexts/poi";
 
 function SearchComponent() {
   const [open, setOpen] = useState<boolean>(false);

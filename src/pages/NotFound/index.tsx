@@ -4,7 +4,7 @@ import "./styles.css";
 import pagenotfound from "../../images/404error.svg";
 import Menu from "../../components/Menu";
 
-const NotFound: React.FC = () => {
+const NotFound = () => {
   return (
     <div>
       <Menu/>

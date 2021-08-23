@@ -18,7 +18,6 @@ import {
 import {
   LocationOn,
   Forum,
-  Room,
   Favorite,
   FavoriteBorder,
 } from "@material-ui/icons/";
@@ -39,7 +38,7 @@ interface Errors {
 }
 
 //TODO: formatar data
-const DetailsPoi: React.FC = () => {
+const DetailsPoi = () => {
   const [modal, setModal] = useState<boolean>(false);
   const [tempName, setTempName] = useState<string>("");
   const [tempPhone, setTempPhone] = useState<string>("");
@@ -51,7 +50,7 @@ const DetailsPoi: React.FC = () => {
   });
 
   const { id } = useParams<{ id: string }>();
-  const { poi, agencyName, fetchPoiById } = useContext(PoiContext);
+  const { poi, agency, fetchPoiById } = useContext(PoiContext);
   const { user, getFavorites, favorites, addFavorite, removeFavorite } =
     useContext(AuthContext);
   const { setTempUser } = useContext(ChatContext);
@@ -228,7 +227,7 @@ const DetailsPoi: React.FC = () => {
                   email: tempEmail,
                 });
                 setModal(false);
-                history.push(`/chat/${agencyName?.id}/${"000"}`);
+                history.push(`/chat/${agency?.id}/${"000"}`);
               }
             }}
           >
@@ -253,9 +252,9 @@ const DetailsPoi: React.FC = () => {
             {handlerFavorite()}
             <CardContent className="card_content_name_agency_details_poi">
               <Typography className="name_agency_details_poi">
-                {agencyName?.name || ""}
+                {agency?.name || ""}
                 {user ? (
-                  <Link to={`/chat/${agencyName?.id}/${idUser}`}>
+                  <Link to={`/chat/${agency?.id}/${idUser}`}>
                     <IconButton style={{ margin: "4px" }}>
                       <Forum color="primary" />
                     </IconButton>

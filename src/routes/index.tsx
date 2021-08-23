@@ -14,7 +14,7 @@ import NotFound from "../pages/NotFound";
 import Register from "../pages/Register";
 import UserProfile from "../pages/UserProfile";
 
-const Routes: React.FC = () => {
+const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>

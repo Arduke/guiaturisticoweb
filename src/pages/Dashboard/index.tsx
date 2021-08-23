@@ -3,13 +3,13 @@ import { useRef } from "react";
 import { useEffect } from "react";
 
 import "./styles.css";
-import ImageList from "../../components/ImageList";
-import ImageSlider from "../../components/ImageSlider";
+import ImageList from "../../components/DashboardComponent/ImageList";
+import ImageSlider from "../../components/DashboardComponent/ImageSlider";
 import Menu from "../../components/Menu";
 import PoiContext from "../../contexts/poi";
 import notimagefound from "../../images/notimagefound.svg";
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
   const { pois, poisCarousel } = useContext(PoiContext);
   const fetch = useRef(useContext(PoiContext));
 

@@ -15,7 +15,7 @@ interface Errors {
   userName: string
 }
 
-const Register: React.FC = () => {
+const Register = () => {
   const { loading, Register, alert, setAlert } = useContext(AuthContext);
 
   const [email, setEmail] = useState<string>('')

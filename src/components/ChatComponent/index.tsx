@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { IconButton, Paper } from "@material-ui/core";
 import Dropzone from "react-dropzone";
@@ -12,7 +12,7 @@ import PoiContext from "../../contexts/poi";
 import { ArrowBackIos, Send, Image } from "@material-ui/icons";
 import socket from "../../services/socket";
 
-const ChatComponent: React.FC = () => {
+const ChatComponent = () => {
   const [message, setMessage] = useState<string>("");
   const {
     sendMessage,
@@ -26,7 +26,7 @@ const ChatComponent: React.FC = () => {
     tempUser,
   } = useContext(ChatContext);
   const { user } = useContext(AuthContext);
-  const { agencyName } = useContext(PoiContext);
+  const { agency } = useContext(PoiContext);
   const { idAgency, idUser } = useParams<any>();
 
   const history = useHistory();
@@ -102,7 +102,7 @@ const ChatComponent: React.FC = () => {
       </div>
       <div className="contentAllChatPage">
         <div className="contentChat">
-          <h1 className="titleChat">{agencyName?.name || "Bate-Papo"}</h1>
+          <h1 className="titleChat">{agency?.name || "Bate-Papo"}</h1>
           <Paper
             elevation={2}
             style={{

@@ -1,5 +1,4 @@
 import { IAgency } from "../agency/IAgency";
-import { IUser } from "../user/IUser";
 import { IPoi } from "../poi/IPoi";
 import { IComment } from "../comment/IComment";
 
@@ -9,8 +8,7 @@ export interface IPoiContextData {
   poi: IPoi | null;
   searchPois: Array<IPoi> | [{}];
   comments: IComment[] | [];
-  userName: IUser | null;
-  agencyName: IAgency | null;
+  agency: IAgency | null;
   loading: Boolean;
   alert: String;
   searchPoi(search: string): Promise<void>;
