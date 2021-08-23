@@ -141,7 +141,7 @@ const Login = () => {
                       clientId={clientId}
                       onSuccess={OnLoginSuccess}
                       onFailure={OnLoginFailure}
-                      buttonText="Acessar com o google"
+                      buttonText="Continuar com Google"
                     />
                   ) : (
                     <> Serviço de login indisponivel </>
