@@ -1,18 +1,31 @@
 .containerImageList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .rootImageList {
-    margin: 0px !important;
-    min-height: 200px;
-    max-height: 300px;
-    width: 300px;
-    margin: 30px;
+  margin: 0px !important;
+  min-height: 200px;
+  max-height: 300px;
+  width: 300px;
+  margin: 30px;
 }
 
 .linkDetails {
-    padding: 20px;
+  padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .linkDetails {
+    padding: 10px;
+  }
+  .rootImageList {
+    margin: 0px !important;
+    min-height: 200px;
+    max-height: 300px;
+    width: 270px;
+    margin: 30px;
+  }
 }

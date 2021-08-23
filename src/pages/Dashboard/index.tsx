@@ -22,7 +22,7 @@ const Dashboard = () => {
     <div className="Dashboard">
       <Menu />
       {pois.length !== 0 && poisCarousel.length !== 0 ? (
-        <div>
+        <>
           <ImageSlider pois={poisCarousel.slice(0, 5)} />
           <h2 className="titleDashboard">
             CONHEÇA LUGARES NO MUNDO EM UM CLICK!
@@ -34,7 +34,7 @@ const Dashboard = () => {
             Carlos Eduardo Martis Filho, Isabela Rocha Silveira, Danilo
             Barberini
           </div>
-        </div>
+        </>
       ) : (
         <div className="notFoundDashboard">
           <h2>Não há nenhum ponto turistico cadastrado</h2>

@@ -33,8 +33,16 @@ const ImageSlider: React.FC<Props> = ({ pois }) => {
 
   return (
     <section className="slider">
-      <ArrowBackIos className="left-arrow" onClick={prevSlide} />
-      <ArrowForwardIos className="rigth-arrow" onClick={nextSlide} />
+      <ArrowBackIos
+        className="left-arrow"
+        fontSize="large"
+        onClick={prevSlide}
+      />
+      <ArrowForwardIos
+        className="rigth-arrow"
+        fontSize="large"
+        onClick={nextSlide}
+      />
       {pois.map((poi, index) => {
         return (
           <div

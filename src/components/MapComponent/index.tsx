@@ -48,8 +48,8 @@ const MyMap: React.FC<IProps> = ({ lat, lng }) => {
 
   return (
     <div className="googleMap">
-      {process.env.REACT_APP_GOOGLE_API_KEY ? (
-        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
+      {process.env.REACT_APP_GOOGLE_MAP_APY_KEY ? (
+        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAP_APY_KEY}>
           <GoogleMap
             center={destination}
             mapContainerStyle={{ width: "100%", height: "500px" }}

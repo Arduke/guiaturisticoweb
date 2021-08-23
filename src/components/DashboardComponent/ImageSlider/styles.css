@@ -1,85 +1,92 @@
 .slider {
-    position: relative;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .imageContainer {
-    position: relative;
+  position: relative;
 }
 
 .imageContainer h1 {
-    padding-bottom: 10px;
-    font-weight: 900;
-    font-size: xx-large;
-    color: white;
-    padding-left: 20%;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.548);
+  padding-bottom: 10px;
+  font-weight: 900;
+  font-size: xx-large;
+  color: white;
+  padding-left: 20%;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.548);
 }
 
 .imageContainer p {
-    min-width: 300px;
-    padding-bottom: 10px;
-    color: white;
-    text-shadow: 1px 1px rgba(0, 0, 0, 0.548);
-    padding-left: 20%;
+  min-width: 100px;
+  padding-bottom: 10px;
+  color: white;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.548);
+  padding-left: 20%;
 }
 
 .imageContainer .chipList {
-    padding-left: 20%;
-    color: white;
+  padding-left: 20%;
+  color: white;
 }
 
 .centeredSliderImage {
-    position: absolute;
-    top: 30%;
-    left: 30%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-50%, -50%);
 }
 
 .imageSlider {
-    min-width: 400px;
-    width: 70vw;
-    height: 70vh;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.445) -2px 2px;
+  width: 90vw;
+  height: 70vh;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.445) -2px 2px;
 }
 
-.rigth-arrow, .left-arrow {
-    position: absolute;
-    top: 50%;
-    font-size: 3rem;
-    color: blue;
-    z-index: 10;
-    cursor: pointer;
-    user-select: none;
+.rigth-arrow,
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  color: white;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
 }
 
 .rigth-arrow {
-    right: 82px
+  right: 80px;
 }
 
 .left-arrow {
-    left: 82px
+  left: 80px;
 }
 
 .slide {
-    opacity: 0;
-    transition-duration: 1s ease;
+  opacity: 0;
+  transition-duration: 1s ease;
 }
 
 .slide.active {
-    opacity: 1;
-    transition-duration: 1s;
-    transform: scale(1.08);
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
 }
 
 .chipImageSlide {
-    margin: 2px;
+  margin: 2px;
 }
 
 .chip {
-    margin-left: 10px !important
+  margin: 10px !important;
+}
+
+@media (max-width: 600px) {
+  .rigth-arrow,
+  .left-arrow {
+    top: 80%;
+    font-size: 80px;
+  }
 }
