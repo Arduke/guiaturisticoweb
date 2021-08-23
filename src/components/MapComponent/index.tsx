@@ -48,32 +48,36 @@ const MyMap: React.FC<IProps> = ({ lat, lng }) => {
 
   return (
     <div className="googleMap">
-      <LoadScript googleMapsApiKey="AIzaSyCTBSgVbSHEIMoxutFSSUXC4DNEg3SfCC8">
-        <GoogleMap
-          center={destination}
-          mapContainerStyle={{ width: "100%", height: "500px" }}
-          zoom={14}
-        >
-          <Marker position={destination} />
-          {destination && origin !== null && (
-            <DirectionsService
-              options={{
-                origin: origin,
-                destination: destination,
-                travelMode: "DRIVING",
-              }}
-              callback={directionsCallback}
-            ></DirectionsService>
-          )}
-          {destination && origin && response !== null && (
-            <DirectionsRenderer
-              options={{
-                directions: response,
-              }}
-            />
-          )}
-        </GoogleMap>
-      </LoadScript>
+      {process.env.REACT_APP_GOOGLE_API_KEY ? (
+        <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
+          <GoogleMap
+            center={destination}
+            mapContainerStyle={{ width: "100%", height: "500px" }}
+            zoom={14}
+          >
+            <Marker position={destination} />
+            {destination && origin !== null && (
+              <DirectionsService
+                options={{
+                  origin: origin,
+                  destination: destination,
+                  travelMode: "DRIVING",
+                }}
+                callback={directionsCallback}
+              ></DirectionsService>
+            )}
+            {destination && origin && response !== null && (
+              <DirectionsRenderer
+                options={{
+                  directions: response,
+                }}
+              />
+            )}
+          </GoogleMap>
+        </LoadScript>
+      ) : (
+        <> Mapa indisponível </>
+      )}
     </div>
   );
 };

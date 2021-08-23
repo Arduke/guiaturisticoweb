@@ -18,9 +18,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const clientId = process.env.REACT_APP_NOT_SECRET_CODE;
+  const clientId = process.env.REACT_APP_GOOGLE_API_KEY;
 
-  console.log(process.env.REACT_APP_NOT_SECRET_CODE);
+  console.log(process.env.REACT_APP_GOOGLE_API_KEY);
 
   useEffect(() => {
     if (signed) {
@@ -148,7 +148,7 @@ const Login = () => {
                       buttonText="Acessar com o google"
                     />
                   ) : (
-                    <> Serviço de mapa indisponivel </>
+                    <> Serviço de login indisponivel </>
                   )}
                 </div>
               </>
