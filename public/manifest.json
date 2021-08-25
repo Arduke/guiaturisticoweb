@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Guia Turistico",
+  "name": "Guia Turistico Digital",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,12 +12,6 @@
       "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512",
       "purpose": "any maskable"
     }
   ],
